@@ -1,19 +1,35 @@
-const srcBar = document.getElementById('srcBarEl');
+const srcForm = document.getElementById('searchDiv');
+const srcBar = document.getElementById('srcInput');
+const prevSearches = document.getElementById('previousSearches');
 
-const url = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q=daft%20punk&per_page=10&page=1';
-const options = {
-	method: 'GET',
-	headers: {
-		'content-type': 'application/octet-stream',
-		'X-RapidAPI-Key': '20be61fe96msh81f284389c5697bp179be5jsn0a196850298b',
-		'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
-	}
+let srcSubmitHandler = function (event) {
+    event.preventDefault();
+    let searchedTerm = srcBar.value.trim();
+    console.log(searchedTerm);
+    if (searchedTerm){
+        localStorage.setItem('thisSearch', searchedTerm);
+        saveSearches(searchedTerm)
+        //call function to get data from api
+        console.log(sessionStorage);
+        srcBar.value = '';
+    } else {
+        alert('Please enter a valid search term')
+    }
 };
 
-fetch(url, options)
-.then(response => response.json())
-.then(test =>
-    console.log('test ' + test))
-    .catch(function (error) {
-        alert('Unable to connect');
-          })
+let saveSearches = function(searchedTerm){
+    let previousSearches = [];
+    for (i = 0; i > 5; i++){
+        searchedTerm = previousSearches[i]
+        console.log(previousSearches);
+    };
+    let newSavedSrc = document.createElement('p');
+    let newSavedSrcText = document.createTextNode(searchedTerm);
+    newSavedSrc.appendChild(newSavedSrcText);
+    document.getElementById('previousSearches').appendChild(newSavedSrc);
+    //if search history isn't empty, create a new item in search history div
+}
+
+//need to instead add each new search to an array
+
+srcForm.addEventListener('submit', srcSubmitHandler);
