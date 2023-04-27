@@ -15,8 +15,7 @@ prevSrcs.innerHTML = "";
   }
 }
 
-function init() {
-
+function loadSavedSrcs() {
   var storedSearches = JSON.parse(localStorage.getItem("localStoredSrcs"));
   if (storedSearches !== null) {
     srcHistoryItems = storedSearches;
@@ -40,37 +39,12 @@ srcForm.addEventListener("submit", function(event) {
   renderSrcHistoryItems();
 });
 
-init();
+const clearSrcHistoryButton = document.getElementById('clearSrcHistory')
+clearSrcHistoryButton.addEventListener('click', function(){
+    console.log('clearing history');
+    prevSrcs.innerHTML = "";
+    srcHistoryItems = [];
+    localStorage.clear();
+});
 
-
-// let srcSubmitHandler = function (event) {
-//     event.preventDefault();
-//     let searchedTerm = srcBar.value.trim();
-//     console.log(searchedTerm);
-//     if (searchedTerm){
-//         saveSearches(searchedTerm)
-//         //call function to get data from api
-//         srcBar.value = '';
-//     } else {
-//         alert('Please enter a valid search term')
-//     }
-// };
-
-// let srcHistoryItems = [];
-
-// let saveSearches = function(searchedTerm){
-//     for (let i = 0; i < 5; i++){
-//         let srcHistoryItem = srcHistoryItems[i];
-//     }
-    
-//     storedSearches.push(searchedTerm);
-//     let newSavedSrc = document.createElement('p');
-//     let newSavedSrcText = document.createTextNode(searchedTerm);
-//     newSavedSrc.appendChild(newSavedSrcText);
-//     document.getElementById('previousSearches').appendChild(newSavedSrc);
-//     //if search history isn't empty, create a new item in search history div
-// }
-
-// //need to instead add each new search to an array
-
-// srcForm.addEventListener('submit', srcSubmitHandler);
+console.log(localStorage);
