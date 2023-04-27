@@ -24,17 +24,25 @@
           id="searchDiv"
           class="bg-black-500 rounded-lg shadow-xl min-h-[50px] row-span-2"
         >
-          <form>
-            <lable>Enter search terms: </lable>
-            <input type="search" />
+          <form id="searchForm">
+            <label>Enter search terms: </label>
+            <input id='srcInput' type="search" />
             <button id="searchBtn">search jams</button>
           </form>
         </div>
+        
+        <div id="searchHistory">
+            <h3>Previous searches:</h3>
+            <div id="previousSearches"></div>
+            <button id="clearSrcHistory">Clear search history</button>
+        </div> 
+
         <div
           id="searchedResults"
           class="bg-red-500 rounded-lg shadow-xl min-h-[300px] row-span-4"
         >
-          <p>Click on a song to add it to your Fresh Picks playlist:</p>
+        
+        <p>Click on a song to add it to your Fresh Picks playlist:</p>
             <div class="fresh-playlist">
             </div>
         </div>
