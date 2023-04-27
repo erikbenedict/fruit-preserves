@@ -1,4 +1,8 @@
 const srcBar = document.getElementById('srcBarEl');
+var suggestedSong = document.getElementById("theSongs")
+var addedSong = document.getElementById("addedSongs")
+
+
 
 const url = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q=daft%20punk&per_page=10&page=1';
 const options = {
