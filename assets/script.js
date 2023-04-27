@@ -1,10 +1,9 @@
-const srcBar = document.getElementById('srcBarEl');
 var suggestedSong = document.getElementById("theSongs")
 var addedSong = document.getElementById("addedSongs")
 
-function addSong() {
-	document.getElementById(addedSong).innerHTML += "<li>" + suggestedSong + "</li>";
-}
+// function addSong() {
+// 	document.getElementById(addedSong).innerHTML += "<li>" + suggestedSong + "</li>";
+// }
 const srcForm = document.getElementById('searchForm');
 const srcBar = document.getElementById('srcInput');
 const prevSrcs = document.getElementById('previousSearches');
