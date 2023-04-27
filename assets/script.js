@@ -97,7 +97,6 @@ srcForm.addEventListener("submit", function(event) {
 
 const clearSrcHistoryButton = document.getElementById('clearSrcHistory')
 clearSrcHistoryButton.addEventListener('click', function(){
-    console.log('clearing history');
     prevSrcs.innerHTML = "";
     srcHistoryItems = [];
     localStorage.clear();
