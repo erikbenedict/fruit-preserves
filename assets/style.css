@@ -3,9 +3,10 @@ body{
     color:rgb(197, 197, 197);
 }
 
-.grid-inception {
-    display: grid;
-    margin: 20px;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-}
+.fresh-playlist button {
+    border: 1px solid #fff;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
+    width: 98%;
+} 
