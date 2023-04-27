@@ -1,19 +1,21 @@
-const srcBar = document.getElementById('srcBarEl');
+import secrets from '../mysecrets.js';
+const clientId = secrets.clientId
+const clientSecret = secrets.clientSecret
 
-const url = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q=daft%20punk&per_page=10&page=1';
-const options = {
-	method: 'GET',
+const authOptions = {
+	method: 'POST',
 	headers: {
-		'content-type': 'application/octet-stream',
-		'X-RapidAPI-Key': '20be61fe96msh81f284389c5697bp179be5jsn0a196850298b',
-		'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
-	}
-};
-
-fetch(url, options)
-.then(response => response.json())
-.then(test =>
-    console.log('test ' + test))
-    .catch(function (error) {
-        alert('Unable to connect');
-          })
+	  'Authorization': 'Basic ' + btoa(`${clientId}:${clientSecret}`),
+	  'Content-Type': 'application/x-www-form-urlencoded'
+	},
+	body: 'grant_type=client_credentials'
+  };
+  
+  fetch('https://accounts.spotify.com/api/token', authOptions)
+    .then(response => response.json())
+    .then(data => {
+		console.log(data);
+        const token = data.access_token;
+        // Do something with the token
+    })
+    .catch(error => console.error(error));
