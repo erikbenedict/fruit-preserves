@@ -1,19 +1,50 @@
-const srcBar = document.getElementById('srcBarEl');
+const srcForm = document.getElementById('searchForm');
+const srcBar = document.getElementById('srcInput');
+const prevSrcs = document.getElementById('previousSearches');
+let srcHistoryItems = [];
 
-const url = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q=daft%20punk&per_page=10&page=1';
-const options = {
-	method: 'GET',
-	headers: {
-		'content-type': 'application/octet-stream',
-		'X-RapidAPI-Key': '20be61fe96msh81f284389c5697bp179be5jsn0a196850298b',
-		'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
-	}
-};
+function renderSrcHistoryItems() {
+prevSrcs.innerHTML = "";
 
-fetch(url, options)
-.then(response => response.json())
-.then(test =>
-    console.log('test ' + test))
-    .catch(function (error) {
-        alert('Unable to connect');
-          })
+  for (let i = 0; i < 5; i++) {
+    let srcHistoryItem = srcHistoryItems[i];
+    let srcHistoryLine = document.createElement('p');
+    srcHistoryLine.textContent = srcHistoryItem;
+    srcHistoryLine.setAttribute('index', i);
+    prevSrcs.appendChild(srcHistoryLine);
+  }
+}
+
+function loadSavedSrcs() {
+  var storedSearches = JSON.parse(localStorage.getItem("localStoredSrcs"));
+  if (storedSearches !== null) {
+    srcHistoryItems = storedSearches;
+  }
+  renderSrcHistoryItems();
+}
+
+function storeSearches() {
+  localStorage.setItem("localStoredSrcs", JSON.stringify(srcHistoryItems));
+}
+srcForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+  let srcText = srcBar.value.trim();
+  if (srcText === "") {
+    return;
+  }
+  srcHistoryItems.push(srcText);
+  srcBar.value = "";
+ 
+  storeSearches();
+  renderSrcHistoryItems();
+});
+
+const clearSrcHistoryButton = document.getElementById('clearSrcHistory')
+clearSrcHistoryButton.addEventListener('click', function(){
+    console.log('clearing history');
+    prevSrcs.innerHTML = "";
+    srcHistoryItems = [];
+    localStorage.clear();
+});
+
+console.log(localStorage);
