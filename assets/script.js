@@ -3,6 +3,7 @@ const clientSecret = '3e7065f63a874ad5a2c715aa6c24aed9';
 const searchedResults = document.getElementById('searchedResults')
 const searchForm = document.getElementById('searchForm');
 const searchBar = document.getElementById('srcInput');
+const searchType = document.getElementById('searchType');
 const prevSearches = document.getElementById('previousSearches');
 let searchHistoryItems = [];
 
@@ -66,7 +67,7 @@ prevSearches.innerHTML = "";
 }
 
 function loadSavedSearches() {
-  var storedSearches = JSON.parse(localStorage.getItem("localStoredSearches"));
+  let storedSearches = JSON.parse(localStorage.getItem("localStoredSearches"));
   if (storedSearches !== null) {
     searchHistoryItems = storedSearches;
   }
@@ -78,7 +79,9 @@ function storeSearches() {
 }
 searchForm.addEventListener("submit", function(event) {
   event.preventDefault();
-  let searchText = searchBar.value.trim();
+  let textInput = searchBar.value.trim();
+  let type = searchType.value.trim();
+  let searchText = `${textInput}: ${type}`;
   if (searchText === "") {
     return;
   }
