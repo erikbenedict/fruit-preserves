@@ -66,6 +66,40 @@ searchForm.addEventListener("submit", async (event) => {
 
 //   ! >>>>>> data >>>>>
   console.log('>>>>>> data >>>>>', data);
+
+//   * seed track path based on selection in searchForm *
+  let seedTrack;
+  if (type === 'Song') {
+    seedTrack = data.tracks.items[0].id;
+  } else if (type === 'Artist') {
+	seedTrack = data.artists.items[0].id
+  } else {
+    seedTrack = data.seeds[0].id
+  }
+
+//   * Endpoint for User search to create 5 recommended songs *
+  const recommendationsEndpoint = `https://api.spotify.com/v1/recommendations?limit=5&market=US&${seedType}=${seedTrack}`;
+
+  const recommendationsResponse = await fetch(recommendationsEndpoint, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const recommendationsData = await recommendationsResponse.json();
+
+//   * Data displayed for each of the recommended songs *
+  const recommendedTracks = recommendationsData.tracks.map((track) => {
+    return {
+      name: track.name,
+      artist: track.artists[0].name,
+      album: track.album.name,
+      image: track.album.images[0].url,
+      preview: track.preview_url,
+      url: track.external_urls.spotify,
+    };
+  });
+// ! >>>>> recommendedTracks >>>>>
+  console.log('>>>>> recommendedTracks >>>>>', recommendedTracks);
 });
 
 function renderSearcHistoryItems() {
