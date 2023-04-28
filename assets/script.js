@@ -2,56 +2,45 @@ const clientId = '463e1867583147f78d5b25bcc0004dda';
 const clientSecret = '3e7065f63a874ad5a2c715aa6c24aed9';
 const searchedResults = document.getElementById('searchedResults')
 const searchForm = document.getElementById('searchForm');
-const searchBar = document.getElementById('srcInput');
+const searchInput = document.getElementById('srcInput');
 const searchType = document.getElementById('searchType');
 const prevSearches = document.getElementById('previousSearches');
 let searchHistoryItems = [];
 
-// * create access token to use for API requests *
-const authOptions = {
-	method: 'POST',
-	headers: {
-	  'Authorization': 'Basic ' + btoa(`${clientId}:${clientSecret}`),
-	  'Content-Type': 'application/x-www-form-urlencoded'
-	},
-	body: 'grant_type=client_credentials'
-  };
-  
-  fetch('https://accounts.spotify.com/api/token', authOptions)
-    .then(response => response.json())
-    .then(data => {
-        const token = data.access_token;
-	// * API request test *
-	// 	const trackOptions = {
-	// 	headers: {
-	// 	'Authorization': 'Bearer ' + token
-	// 	}
-	// };
+// * function to create access token to use for API requests *
+async function getAccessToken() {
+	try { 
+		const authOptions = {
+			method: 'POST',
+			headers: {
+			'Authorization': 'Basic ' + btoa(`${clientId}:${clientSecret}`),
+			'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			body: 'grant_type=client_credentials'
+		};
+		const response = await fetch('https://accounts.spotify.com/api/token', authOptions);
+		const data_1 = await response.json();
+		const token = data_1.access_token;
+		return token;
+	} catch (error) {
+		console.log(error);
+	}
+}
 
-	// fetch('https://api.spotify.com/v1/tracks/6QjmnLmLqwjJzHSDCRTACU', trackOptions)
-	// 	.then(response => response.json())
-	// 	.then(data => {
-	// 	console.log(data);
-	// 	const sampleUl = document.createElement('ul');
-	// 	const sample = document.createElement('li');
-	// 	const audio = document.createElement('audio');
-	// 	const trackName = document.createElement('div');
-	// 	const artistName = document.createElement('div');
-	// 	const albumName = document.createElement('div');
-
-	// 	audio.setAttribute('controls', true);
-	// 	audio.setAttribute('src', data.preview_url);
-
-	// 	trackName.innerHTML = `Track Name: ${data.name}`;
-	// 	artistName.innerHTML = `Artist Name: ${data.artists[0].name}`;
-	// 	albumName.innerHTML = `Album Name: ${data.album.name}`;
-
-	// 	sample.append(audio, trackName, artistName, albumName);
-	// 	sampleUl.append(sample);
-	// 	searchedResults.append(sampleUl);
-	// 	})
-	// 	.catch(error => console.error(error));
-	});
+// * Event listener for submit on searchForm *
+searchForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  let textInput = searchInput.value.trim();
+  let type = searchType.value.trim();
+  let searchText = `${textInput}: ${type}`;
+  if (searchText === "") {
+    return;
+  }
+  searchHistoryItems.push(searchText);
+  searchInput.value = "";
+  storeSearches();
+  renderSearcHistoryItems();
+});
 
 function renderSearcHistoryItems() {
 prevSearches.innerHTML = "";
@@ -77,19 +66,8 @@ function loadSavedSearches() {
 function storeSearches() {
   localStorage.setItem("localStoredSearches", JSON.stringify(searchHistoryItems));
 }
-searchForm.addEventListener("submit", function(event) {
-  event.preventDefault();
-  let textInput = searchBar.value.trim();
-  let type = searchType.value.trim();
-  let searchText = `${textInput}: ${type}`;
-  if (searchText === "") {
-    return;
-  }
-  searchHistoryItems.push(searchText);
-  searchBar.value = "";
-  storeSearches();
-  renderSearcHistoryItems();
-});
+
+
 
 
 const clearSearchHistoryButton = document.getElementById('clearSrcHistory')
