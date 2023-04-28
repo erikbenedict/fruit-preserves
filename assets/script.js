@@ -1,50 +1,49 @@
-const srcForm = document.getElementById('searchForm');
-const srcBar = document.getElementById('srcInput');
-const prevSrcs = document.getElementById('previousSearches');
-let srcHistoryItems = [];
+const searchForm = document.getElementById('searchForm');
+const searchBar = document.getElementById('srcInput');
+const prevSearches = document.getElementById('previousSearches');
+let searchHistoryItems = [];
 
-function renderSrcHistoryItems() {
-prevSrcs.innerHTML = "";
-
-  for (let i = 0; i < 5; i++) {
-    let srcHistoryItem = srcHistoryItems[i];
-    let srcHistoryLine = document.createElement('p');
-    srcHistoryLine.textContent = srcHistoryItem;
-    srcHistoryLine.setAttribute('index', i);
-    prevSrcs.appendChild(srcHistoryLine);
+function renderSearcHistoryItems() {
+prevSearches.innerHTML = "";
+  for (let i = 0; i < searchHistoryItems.length; i++) {
+    let searchHistoryItem = searchHistoryItems[i];
+    let searchHistoryLine = document.createElement('div');
+    searchHistoryLine.textContent = searchHistoryItem;
+    prevSearches.appendChild(searchHistoryLine);
+  };
+  if(searchHistoryItems.length === 5){
+    searchHistoryItems.shift();
   }
 }
 
-function loadSavedSrcs() {
-  var storedSearches = JSON.parse(localStorage.getItem("localStoredSrcs"));
+function loadSavedSearches() {
+  var storedSearches = JSON.parse(localStorage.getItem("localStoredSearches"));
   if (storedSearches !== null) {
-    srcHistoryItems = storedSearches;
+    searchHistoryItems = storedSearches;
   }
-  renderSrcHistoryItems();
+  renderSearcHistoryItems();
 }
 
 function storeSearches() {
-  localStorage.setItem("localStoredSrcs", JSON.stringify(srcHistoryItems));
+  localStorage.setItem("localStoredSearches", JSON.stringify(searchHistoryItems));
 }
-srcForm.addEventListener("submit", function(event) {
+searchForm.addEventListener("submit", function(event) {
   event.preventDefault();
-  let srcText = srcBar.value.trim();
-  if (srcText === "") {
+  let searchText = searchBar.value.trim();
+  if (searchText === "") {
     return;
   }
-  srcHistoryItems.push(srcText);
-  srcBar.value = "";
- 
+  searchHistoryItems.push(searchText);
+  searchBar.value = "";
   storeSearches();
-  renderSrcHistoryItems();
+  renderSearcHistoryItems();
 });
 
-const clearSrcHistoryButton = document.getElementById('clearSrcHistory')
-clearSrcHistoryButton.addEventListener('click', function(){
-    console.log('clearing history');
-    prevSrcs.innerHTML = "";
-    srcHistoryItems = [];
+const clearSearchHistoryButton = document.getElementById('clearSrcHistory')
+clearSearchHistoryButton.addEventListener('click', function(){
+    prevSearches.innerHTML = "";
+    searchHistoryItems = [];
     localStorage.clear();
 });
 
-console.log(localStorage);
+loadSavedSearches();
