@@ -40,6 +40,32 @@ searchForm.addEventListener("submit", async (event) => {
   searchInput.value = "";
   storeSearches();
   renderSearcHistoryItems();
+
+//   * creates endpoints and seed types based on selection in searchForm *
+  let seedType;
+  let endpoint;
+  if (type === 'Artist') {
+    endpoint = `https://api.spotify.com/v1/search?q=${encodeURIComponent(textInput)}&type=artist&limit=1`;
+    seedType = 'seed_artists';
+  } else if (type === 'Song') {
+    endpoint = `https://api.spotify.com/v1/search?q=${encodeURIComponent(textInput)}&type=track&limit=1`;
+    seedType = 'seed_tracks';
+  } else {
+    endpoint = `https://api.spotify.com/v1/recommendations?limit=1&market=US&seed_genres=${encodeURIComponent(textInput)}`;
+    seedType = 'seed_genres';
+  }
+
+  const token = await getAccessToken();
+
+  const response = await fetch(endpoint, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await response.json();
+
+//   ! >>>>>> data >>>>>
+  console.log('>>>>>> data >>>>>', data);
 });
 
 function renderSearcHistoryItems() {
