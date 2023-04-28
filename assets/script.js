@@ -39,6 +39,7 @@ searchForm.addEventListener("submit", function(event) {
   renderSearcHistoryItems();
 });
 
+
 const clearSearchHistoryButton = document.getElementById('clearSrcHistory')
 clearSearchHistoryButton.addEventListener('click', function(){
     prevSearches.innerHTML = "";
