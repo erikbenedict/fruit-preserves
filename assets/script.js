@@ -65,7 +65,7 @@ searchForm.addEventListener("submit", async (event) => {
   });
   const data = await response.json();
 
-//   ! >>>>>> data >>>>>
+//   ! >>>>>> data >>>>> !
   console.log('>>>>>> data >>>>>', data);
 
 //   * seed track path based on selection in searchForm *
@@ -87,6 +87,7 @@ searchForm.addEventListener("submit", async (event) => {
     },
   });
   const recommendationsData = await recommendationsResponse.json();
+//    ! >>>>>>>>> recommendations data >>>>>>> !
   console.log('>>>>> recommendationsData >>>>', recommendationsData);
 
 //   * Display recommended track in the searchedResults div *
@@ -136,9 +137,6 @@ function loadSavedSearches() {
 function storeSearches() {
   localStorage.setItem("localStoredSearches", JSON.stringify(searchHistoryItems));
 }
-
-
-
 
 const clearSearchHistoryButton = document.getElementById('clearSrcHistory')
 clearSearchHistoryButton.addEventListener('click', function(){
