@@ -37,23 +37,23 @@
         </form>
         </div>
         
-        <div id="searchHistory">
-            <h3>Previous searches:</h3>
+        <div id="searchHistory" class="bg-zinc-500 rounded-lg shadow-xl row-span-4 p-2">
+            <h2 class="text-lg font-bold text-white underline">Previous Searches:</h2>
             <div id="previousSearches"></div>
-            <button id="clearSrcHistory">Clear search history</button>
+            <button id="clearSrcHistory" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded my-1">Clear search history</button>
         </div> 
 
         <div
           id="searchedResults"
-          class="bg-red-500 rounded-lg shadow-xl min-h-[300px] row-span-4"
+          class="bg-neutral-400 rounded-lg shadow-xl row-span-4 p-2 m-2"
         >
-        <p>Click on a song to add it to your Fresh Picks playlist:</p>
+        <h2 class="text-lg font-bold text-white underline">Checkout these jams!</h2>
             <div id="suggestions">
             </div>
         </div>
         <div
           id="userPlaylist"
-          class="bg-blue-500 rounded-lg shadow-xl min-h-[300px] row-span-4"
+          class="bg-blue-500 rounded-lg shadow-xl min-h-[300px] row-span-4 m-2 p-2"
         >
           <h3>My Fresh Picks:</h3>
             <div class="fresh-playlist">
@@ -61,7 +61,7 @@
         </div>
         <div
           id="ticketmaster"
-          class="bg-green-500 rounded-lg shadow-xl min-h-[300px] col-span-3"
+          class="bg-green-500 rounded-lg shadow-xl min-h-[300px] col-span-3 m-2 p-2"
         >
           <h3>Upcoming concerts</h3>
           <p>
