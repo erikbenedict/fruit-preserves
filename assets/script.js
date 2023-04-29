@@ -1,6 +1,7 @@
 const clientId = '463e1867583147f78d5b25bcc0004dda';
 const clientSecret = '3e7065f63a874ad5a2c715aa6c24aed9';
-const searchedResults = document.getElementById('searchedResults')
+const searchedResults = document.getElementById('searchedResults');
+const suggestions = document.getElementById('suggestions')
 const searchForm = document.getElementById('searchForm');
 const searchInput = document.getElementById('srcInput');
 const searchType = document.getElementById('searchType');
@@ -77,8 +78,8 @@ searchForm.addEventListener("submit", async (event) => {
     seedTrack = data.seeds[0].id
   }
 
-//   * Endpoint for User search to create 5 recommended songs *
-  const recommendationsEndpoint = `https://api.spotify.com/v1/recommendations?limit=5&market=US&${seedType}=${seedTrack}`;
+//   * Endpoint for User search to create recommended songs *
+  const recommendationsEndpoint = `https://api.spotify.com/v1/recommendations?market=US&${seedType}=${seedTrack}`;
 
   const recommendationsResponse = await fetch(recommendationsEndpoint, {
     headers: {
@@ -86,20 +87,29 @@ searchForm.addEventListener("submit", async (event) => {
     },
   });
   const recommendationsData = await recommendationsResponse.json();
+  console.log('>>>>> recommendationsData >>>>', recommendationsData);
 
-//   * Data displayed for each of the recommended songs *
-  const recommendedTracks = recommendationsData.tracks.map((track) => {
-    return {
-      name: track.name,
-      artist: track.artists[0].name,
-      album: track.album.name,
-      image: track.album.images[0].url,
-      preview: track.preview_url,
-      url: track.external_urls.spotify,
-    };
-  });
-// ! >>>>> recommendedTracks >>>>>
-  console.log('>>>>> recommendedTracks >>>>>', recommendedTracks);
+//   * Display recommended track in the searchedResults div *
+	//  * clears previous suggestions
+  suggestions.innerHTML = '';
+	// * Loop through the tracks in the recommendations data
+  let recommendationCount = 0;
+  for (let i = 0; i < recommendationsData.tracks.length && recommendationCount < 5; i++) {
+  	// * creates new suggestion elements and adds them to the recommendation count
+  const songSuggestion = document.createElement('div');
+  songSuggestion.setAttribute('class', 'col-12 bg-gray-600 text-white my-2');
+let iframe = document.createElement('iframe');
+  iframe.setAttribute('src', `https://open.spotify.com/embed/track/${recommendationsData.tracks[i].id}`);
+  iframe.setAttribute('width', '100%');
+  iframe.setAttribute('height', '80');
+  iframe.setAttribute('frameborder', '0');
+  iframe.setAttribute('allowtransparency', 'true');
+  iframe.setAttribute('allow', 'encrypted-media');
+  songSuggestion.append(iframe);
+  suggestions.append(songSuggestion);
+
+  recommendationCount++;
+}
 });
 
 function renderSearcHistoryItems() {
