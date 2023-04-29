@@ -4,16 +4,25 @@ const searchForm = document.getElementById('searchForm');
 const searchBar = document.getElementById('srcInput');
 const prevSearches = document.getElementById('previousSearches');
 let searchHistoryItems = [];
+var addBtn = document.querySelector("#searchBtn")
+var addInput = document.querySelector("#srcInput")
 
 
 
+addBtn.addEventListener("click", () => {
+  var ul = document.getElementById("theSongs");
+  var li = document.createElement("li");
+  li.innerHTML = addInput.value;
+  ul.appendChild(li);
+});
 
-function addSong() {
-  let addedSong = document.getElementById("srcInput").value
-  let songLi = document.createElement("li");
-  songLi.textContent = addedSong + "" + ".";
-  document.getElementById("theSongs").appendChild(li);
-}
+// function addSong() {
+//   let addedSong = document.getElementById("srcInput").value
+//   let songLi = document.createElement("li");
+//   songLi.textContent = addedSong + "" + ".";
+//   document.getElementById("theSongs").appendChild(li);
+// };
+
 
 
 function renderSearcHistoryItems() {
@@ -49,7 +58,7 @@ searchForm.addEventListener("submit", function(event) {
   searchHistoryItems.push(searchText);
   searchBar.value = "";
   storeSearches();
-  renderSrcHistoryItems();
+  renderSearcHistoryItems();
 });
 
 // srcForm.addEventListener("click", addSong)
