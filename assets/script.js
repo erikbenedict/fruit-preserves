@@ -10,6 +10,51 @@ const searchType = document.getElementById('searchType');
 const prevSearches = document.getElementById('previousSearches');
 let searchHistoryItems = [];
 
+
+
+// var addBtn = document.querySelector(".suggestedSongs")
+// // var addInput = document.querySelector("#suggestions")
+
+// addBtn.addEventListener("click", () => {
+//   var ul = document.getElementById("addedSongs");
+//   var li = document.createElement("li");
+//   li.innerHTML = addBtn.value;
+//   ul.appendChild(li);
+// });
+// console.log(ul)
+// function addSong() {
+//   let addedSong = document.getElementById("srcInput").value
+//   let songLi = document.createElement("li");
+//   songLi.textContent = addedSong + "" + ".";
+//   document.getElementById("theSongs").appendChild(li);
+// };
+
+
+// addedSongs.innerHTML = "";
+// const node = document.getElementsByClassName("suggestedSong");
+// const clone = node.cloneNode(true);
+// document.getElementById("addedSongs").appendChild(clone);
+
+// addBtn.addEventListener("click", () => {
+// const node = document.getElementsByClassName("suggestedSong");
+// const clone = node.cloneNode(true);
+// document.getElementById("addedSongs").appendChild(clone);
+// });
+
+
+
+// var ul = document.getElementById("addedSongs");
+//   var li = document.createElement("li");
+//   li.innerHTML = addBtn.value;
+//   ul.appendChild(li);
+
+
+
+
+
+
+
+
 // * function to create access token to use for API requests *
 async function getAccessToken() {
 	try { 
@@ -41,7 +86,7 @@ searchForm.addEventListener("submit", async (event) => {
   }
   searchHistoryItems.push(searchText);
   searchInput.value = "";
-  storeSearches();
+  // storeSearches();
   renderSearcHistoryItems();
 
 //   * creates endpoints and seed types based on selection in searchForm *
@@ -102,7 +147,13 @@ searchForm.addEventListener("submit", async (event) => {
   const songSuggestion = document.createElement('div');
   songSuggestion.setAttribute('class', 'col-12 bg-gray-600 text-white my-2');
 let iframe = document.createElement('iframe');
+let addBtn = document.createElement('button');
+addBtn.setAttribute("textContent", "Add Me??");
+addBtn.setAttribute("color", "white");
+addBtn.setAttribute("width", "50%");
+addBtn.setAttribute("text-align", "left" )
   iframe.setAttribute('src', `https://open.spotify.com/embed/track/${recommendationsData.tracks[i].id}`);
+  iframe.setAttribute('class','suggestedSongs')
   iframe.setAttribute('width', '100%');
   iframe.setAttribute('height', '80');
   iframe.setAttribute('frameborder', '0');
@@ -110,28 +161,21 @@ let iframe = document.createElement('iframe');
   iframe.setAttribute('allow', 'encrypted-media');
   songSuggestion.append(iframe);
   suggestions.append(songSuggestion);
+  suggestions.append(addBtn)
 
   recommendationCount++;
 }
 });
-var addBtn = document.querySelector("#searchBtn")
-var addInput = document.querySelector("#srcInput")
+
+// var addBtn = document.querySelector(".suggestedSongs")
+
+// addBtn.addEventListener("click", () => {
+//   const node = document.getElementsByClassName("suggestedSong");
+//   const clone = node.cloneNode(true);
+//   document.getElementById("addedSongs").appendChild(clone);
+//   });
 
 
-
-addBtn.addEventListener("click", () => {
-  var ul = document.getElementById("theSongs");
-  var li = document.createElement("li");
-  li.innerHTML = addInput.value;
-  ul.appendChild(li);
-});
-
-// function addSong() {
-//   let addedSong = document.getElementById("srcInput").value
-//   let songLi = document.createElement("li");
-//   songLi.textContent = addedSong + "" + ".";
-//   document.getElementById("theSongs").appendChild(li);
-// };
 
 
 
@@ -156,20 +200,20 @@ function loadSavedSearches() {
   renderSearcHistoryItems();
 }
 
-function storeSearches() {
-  localStorage.setItem("localStoredSearches", JSON.stringify(searchHistoryItems));
-}
-searchForm.addEventListener("submit", function(event) {
-  event.preventDefault();
-  let searchText = searchBar.value.trim();
-  if (searchText === "") {
-    return;
-  }
-  searchHistoryItems.push(searchText);
-  searchBar.value = "";
-  storeSearches();
-  renderSearcHistoryItems();
-});
+// function storeSearches() {
+//   localStorage.setItem("localStoredSearches", JSON.stringify(searchHistoryItems));
+// }
+// searchForm.addEventListener("submit", function(event) {
+//   event.preventDefault();
+//   let searchText = searchBar.value.trim();
+//   if (searchText === "") {
+//     return;
+//   }
+//   searchHistoryItems.push(searchText);
+//   searchBar.value = "";
+//   storeSearches();
+//   renderSearcHistoryItems();
+// });
 
 // srcForm.addEventListener("click", addSong)
 
