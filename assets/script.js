@@ -37,14 +37,14 @@ searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   let textInput = searchInput.value.trim();
   let type = searchType.value.trim();
-  let searchText = `${textInput}: ${type}`;
+  let searchText = `${textInput} : ${type}`;
   if (searchText === "") {
     return;
   }
   searchHistoryItems.push(searchText);
   searchInput.value = "";
   storeSearches();
-  renderSearcHistoryItems();
+  renderSearchHistoryItems();
 
   //   * creates endpoints and seed types based on selection in searchForm *
   let seedType;
@@ -162,15 +162,19 @@ function returnElementId123(elementId) {
 
 
 
-function renderSearcHistoryItems() {
-  prevSearches.innerHTML = "";
+function renderSearchHistoryItems() {
+prevSearches.innerHTML = "";
   for (let i = 0; i < searchHistoryItems.length; i++) {
     let searchHistoryItem = searchHistoryItems[i];
-    let searchHistoryLine = document.createElement("div");
-    searchHistoryLine.textContent = searchHistoryItem;
-    prevSearches.appendChild(searchHistoryLine);
-  }
-  if (searchHistoryItems.length === 5) {
+    let searchHistoryLine = document.createElement('div');
+	let searchHistoryBtn = document.createElement('button');
+	searchHistoryBtn.setAttribute('class', 'bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow my-1');
+	searchHistoryBtn.setAttribute('id', 'searchHistoryBtn');
+    searchHistoryBtn.textContent = searchHistoryItem;
+	searchHistoryLine.append(searchHistoryBtn);
+    prevSearches.append(searchHistoryLine);
+  };
+  if(searchHistoryItems.length === 5){
     searchHistoryItems.shift();
   }
 }
@@ -180,7 +184,7 @@ function loadSavedSearches() {
   if (storedSearches !== null) {
     searchHistoryItems = storedSearches;
   }
-  renderSearcHistoryItems();
+  renderSearchHistoryItems();
 }
 
 function storeSearches() {
