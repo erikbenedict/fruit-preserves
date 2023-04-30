@@ -144,13 +144,21 @@ function returnElementId123(elementId) {
   console.log(iframeId);
   const node = document.getElementById("iframe-" + iframeId);
   const clone = node.cloneNode(true);
-  var songNumber = (document.getElementById("addedSongs").childElementCount/2) + 1;
+  var songNumber = (document.getElementById("addedSongs").childElementCount/3) + 1;
   console.log(songNumber);
   var thisSong = document.createElement("h2");
   thisSong.textContent = songNumber.toString() + ')';  
   document.getElementById("addedSongs").appendChild(thisSong); 
   document.getElementById("addedSongs").appendChild(clone);
+  let addArtistBtn = document.createElement("button");
+  addArtistBtn.setAttribute("id", "button-" + songNumber);
+  addArtistBtn.textContent = "Check out upcoming Concerts!";
+  console.log(addArtistBtn)
+  document.getElementById("addedSongs").appendChild(addArtistBtn);
 }
+
+
+
 
 
 

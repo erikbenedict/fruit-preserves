@@ -5,8 +5,8 @@ body{
 
 .fresh-playlist button {
     border: 1px solid #fff;
-    margin: 5px;
-    padding: 10px;
+    color: black;
+    padding: 3px;
     border-radius: 20px;
-    width: 98%;
+    width: 100%;
 } 
