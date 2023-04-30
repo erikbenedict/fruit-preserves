@@ -118,6 +118,8 @@ searchForm.addEventListener("submit", async (event) => {
     iframe.setAttribute("id", "iframe-" + i);
     addBtn.setAttribute("id", "button-" + i);
     addBtn.textContent = "Save to Playlist";
+    // addBtn.setAttribute("", "border-style: solid")
+    addBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-nuetral-950 px-3 py-2")
     iframe.setAttribute(
       "src",
       `https://open.spotify.com/embed/track/${recommendationsData.tracks[i].id}`
@@ -152,6 +154,7 @@ function returnElementId123(elementId) {
   document.getElementById("addedSongs").appendChild(clone);
   let addArtistBtn = document.createElement("button");
   addArtistBtn.setAttribute("id", "button-" + songNumber);
+  addArtistBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-nuetral-950 px-3 py-2")
   addArtistBtn.textContent = "Check out upcoming Concerts!";
   console.log(addArtistBtn)
   document.getElementById("addedSongs").appendChild(addArtistBtn);
