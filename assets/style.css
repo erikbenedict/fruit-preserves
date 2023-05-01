@@ -8,7 +8,8 @@
 }
 body{
     min-height: 100vh;
-    background: #2b2b2b;
+    background-color: #1F2833;
+    color:rgb(197, 197, 197);
     transition: 0.5s;
 }
 body.active{
@@ -17,7 +18,7 @@ body.active{
 .top-bar h1, .top-bar h2 {
    margin: 5px; 
    font-weight: 900;
-   font-size: x-large;
+   font-size: 35px;
 }
 
 .top-bar {
@@ -29,13 +30,24 @@ body.active{
 .titles, #toggle {
     width: 50%;
 }
+.titles {
+    color: #66FCF1;
+}
+.titles.active {
+    color: #45A29E;
+}
 .hero {
-    border: solid black;
+    border: solid #1F2833;
     padding: 35px;
-    background-color: teal;
+    background-color: #66FCF1;
     text-align-last: end;
     margin: 10px;
     font-size: 1.3em;
+    transition: 0.5s;
+}
+.hero.active {
+    background-color: #45A29E;
+    border: solid #f8f8f8;
 }
 #toggle { /* https://www.youtube.com/watch?v=gzCUq_VQ7Y8 */
     position: relative;
