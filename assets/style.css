@@ -36,8 +36,7 @@ body.active{
 .titles.active {
     color: #45A29E;
 }
-.hero {
-    border: solid #1F2833;
+#hero {
     padding: 35px;
     background-color: #66FCF1;
     text-align-last: end;
@@ -45,9 +44,8 @@ body.active{
     font-size: 1.3em;
     transition: 0.5s;
 }
-.hero.active {
+#hero.active {
     background-color: #45A29E;
-    border: solid #f8f8f8;
 }
 #toggle { /* https://www.youtube.com/watch?v=gzCUq_VQ7Y8 */
     position: relative;
