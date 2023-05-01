@@ -118,8 +118,7 @@ searchForm.addEventListener("submit", async (event) => {
     iframe.setAttribute("id", "iframe-" + i);
     addBtn.setAttribute("id", "button-" + i);
     addBtn.textContent = "Save to Playlist";
-    // addBtn.setAttribute("", "border-style: solid")
-    addBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-nuetral-950 px-3 py-2")
+    addBtn.setAttribute("class", "text-neutral-950 border-solid hover:shadow-lg hover:bg-neutral-500 font-semibold rounded border-4 dark:border-sky-500 border-nuetral-950 px-3 py-2")
     iframe.setAttribute(
       "src",
       `https://open.spotify.com/embed/track/${recommendationsData.tracks[i].id}`
@@ -141,22 +140,18 @@ searchForm.addEventListener("submit", async (event) => {
 // function for adding button to each song and playlists
 function returnElementId123(elementId) {
   var buttonId = elementId;
-  console.log(buttonId);
   var iframeId = buttonId.toString().split("-")[1];
-  console.log(iframeId);
   const node = document.getElementById("iframe-" + iframeId);
   const clone = node.cloneNode(true);
   var songNumber = (document.getElementById("addedSongs").childElementCount/3) + 1;
-  console.log(songNumber);
   var thisSong = document.createElement("h2");
   thisSong.textContent = songNumber.toString() + ')';  
   document.getElementById("addedSongs").appendChild(thisSong); 
   document.getElementById("addedSongs").appendChild(clone);
   let addArtistBtn = document.createElement("button");
   addArtistBtn.setAttribute("id", "button-" + songNumber);
-  addArtistBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-nuetral-950 px-3 py-2")
+  addArtistBtn.setAttribute("class", "text-neutral-950 border-solid hover:shadow-lg hover:bg-neutral-500 font-semibold rounded border-4 dark:border-sky-500 border-nuetral-950 px-3 py-2")
   addArtistBtn.textContent = "Check out upcoming Concerts!";
-  console.log(addArtistBtn)
   document.getElementById("addedSongs").appendChild(addArtistBtn);
 }
 
