@@ -8,7 +8,27 @@ body{
     width: 100%;
     margin: 0;
     padding: 0;
+    color: white;
+    text-align: center;
     background-position: center;
     background-size: cover;
     background-image: url(./fruits-and-jams-hero.jpg);
+}
+
+.hero-1 {
+    height: 100px;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    background-color: green;
+    opacity: 0.3;
+}
+
+.hero-2 {
+    height: 100px;
+    margin: auto;
+    width: 40%;
+    align-items: ;
+    background-color: rgb(9, 0, 128);
+    opacity: 0.3;
 }
