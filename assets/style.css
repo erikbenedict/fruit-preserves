@@ -3,10 +3,12 @@ body{
     color:rgb(197, 197, 197);
 }
 
-/* .fresh-playlist button {
-    border: 1px solid #fff;
-    color: black;
-    padding: 3px;
-    border-radius: 20px;
+.hero {
+    height: 450px;
     width: 100%;
-}  */
+    margin: 0;
+    padding: 0;
+    background-position: center;
+    background-size: cover;
+    background-image: url(./fruits-and-jams-hero.jpg);
+}

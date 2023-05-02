@@ -104,7 +104,7 @@ async function getRecommendations(type, textInput) {
     iframe.setAttribute("id", "iframe-" + i);
     addBtn.setAttribute("id", "button-" + i);
     addBtn.textContent = "Save to Playlist";
-    addBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-nuetral-950 px-3 py-2")
+    addBtn.setAttribute("class", "text-neutral-950 border-solid font-semibold rounded hover:bg-neutral-100 hover:shadow-lg border-4 dark:border-sky-500 border-neutral-950 px-3 py-2")
 	iframe.setAttribute('src', `https://open.spotify.com/embed/track/${recommendationsData.tracks[i].id}`);
 	iframe.setAttribute('width', '100%');
 	iframe.setAttribute('height', '80');
@@ -149,7 +149,7 @@ function returnElementId123(elementId) {
 	document.getElementById("addedSongs").appendChild(clone);
 	let addArtistBtn = document.createElement("button");
 	addArtistBtn.setAttribute("id", "button-" + songNumber);
-	addArtistBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-neutral-950 px-3 py-2")
+	addArtistBtn.setAttribute("class", "text-neutral-950 border-solid font-semibold rounded hover:bg-neutral-100 hover:shadow-lg border-4 dark:border-sky-500 border-neutral-950 px-3 py-2")
 	addArtistBtn.textContent = "Check out upcoming Concerts!";
 	document.getElementById("addedSongs").appendChild(addArtistBtn);
   }
