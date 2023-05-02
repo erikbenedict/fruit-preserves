@@ -100,17 +100,18 @@ async function getRecommendations(type, textInput) {
 	const songSuggestion = document.createElement('div');
 	songSuggestion.setAttribute('class', 'col-12 bg-gray-600 text-white my-2');
     let iframe = document.createElement('iframe');
-	let addBtn = document.createElement("button");
     iframe.setAttribute("id", "iframe-" + i);
-    addBtn.setAttribute("id", "button-" + i);
-    addBtn.textContent = "Save to Playlist";
-    addBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-nuetral-950 px-3 py-2")
 	iframe.setAttribute('src', `https://open.spotify.com/embed/track/${recommendationsData.tracks[i].id}`);
 	iframe.setAttribute('width', '100%');
 	iframe.setAttribute('height', '80');
 	iframe.setAttribute('frameborder', '0');
 	iframe.setAttribute('allowtransparency', 'true');
 	iframe.setAttribute('allow', 'encrypted-media');
+	iframe.setAttribute('data-artist', recommendationsData.tracks[i].artists[0].name);
+	let addBtn = document.createElement("button");
+	addBtn.setAttribute("id", "button-" + i);
+    addBtn.textContent = "Save to Playlist";
+    addBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-nuetral-950 px-3 py-2")
 	addBtn.setAttribute("onClick", "returnElementId123(this.id)");
 	songSuggestion.append(iframe);
 	suggestions.append(songSuggestion, addBtn);
@@ -152,6 +153,10 @@ function returnElementId123(elementId) {
 	addArtistBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-neutral-950 px-3 py-2")
 	addArtistBtn.textContent = "Check out upcoming Concerts!";
 	document.getElementById("addedSongs").appendChild(addArtistBtn);
+	addArtistBtn.addEventListener('click', () => {
+		let artistName = clone.getAttribute('data-artist');
+		console.log(artistName);
+	})
   }
 
 const clearSearchHistoryButton = document.getElementById('clearSrcHistory')
