@@ -156,6 +156,7 @@ function returnElementId123(elementId) {
 	addArtistBtn.addEventListener('click', () => {
 		let artistName = clone.getAttribute('data-artist');
 		console.log(artistName);
+    getArtistId(artistName);
 	})
   }
 
@@ -172,6 +173,57 @@ function loadSavedSearches() {
     searchHistoryItems = storedSearches;
   }
   renderSearchHistoryItems();
+}
+
+//I'm working here
+
+let getArtistId = async function(searchTerm){
+    //event.preventDefault();
+    let tempSearch = 'marina';
+    let artistEndpoint = 'https://app.ticketmaster.com/discovery/v2/attractions.json?keyword=' + searchTerm + '&apikey=OG2fkxjdAsu6SUo15migEcOBGuAtVBAL';
+    let response = await fetch(artistEndpoint);
+    let data = await response.json();
+    for(i = 0; i < 5 && i < data._embedded.attractions.length; i++){
+        await getConcertData(data._embedded.attractions[i].id);
+    }
+};
+
+let getConcertData = async function(artistId){
+    let concertsEndpoint = 'https://app.ticketmaster.com/discovery/v2/events.json?attractionId=' + artistId + '&apikey=OG2fkxjdAsu6SUo15migEcOBGuAtVBAL';
+    let response2 = await fetch(concertsEndpoint);
+    let data2 = await response2.json();
+    for(i = 0; i < 5; i++){
+        console.log('for loop test' + i)
+        let name = data2._embedded.events[i].name
+        let date = data2._embedded.events[i].dates.start.localDate
+        let url = data2._embedded.events[i]._embedded.venues[0].url
+        renderConcertData(name, date, url);    
+    }
+};
+
+let renderConcertData = function(name, date, url){
+  const ticketmasterDiv = document.getElementById('ticketmaster');
+  ticketmasterDiv.innerHTML='';
+
+  const concertInfo = document.createElement('div');
+  const concertName = document.createTextNode(name)
+  const concertDateLabel = document.createTextNode(' | Date: ')
+  let concertDate = document.createTextNode(date)
+  const concertVenueLabel = document.createTextNode(' | ');
+  const concertVenue = document.createElement('a')
+  concertVenue.setAttribute('href', url)
+  const venueLink = document.createTextNode(' | Click here to see venue information');
+  concertVenue.appendChild(venueLink);
+
+  concertInfo.appendChild(concertName);
+  concertInfo.appendChild(concertDateLabel);
+  concertInfo.appendChild(concertDate);
+  concertInfo.appendChild(concertVenueLabel);
+  concertInfo.appendChild(concertVenue);
+  document.body.appendChild(concertInfo);
+  
+  ticketmasterDiv.appendChild(concertInfo)
+  console.log('this is the renderConcertData function')
 }
 
 loadSavedSearches();
