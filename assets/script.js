@@ -175,3 +175,25 @@ function loadSavedSearches() {
 }
 
 loadSavedSearches();
+
+// Light & Dark Mode //
+const body = document.querySelector('body');
+const header = document.querySelector('.titles');
+const div = document.querySelector('#hero');
+const redDiv = document.querySelector('#searchHistory');
+const greenDiv = document.querySelector('#ticketmaster');
+const button = document.querySelector('#clearSrcHistory');
+const blueDiv = document.querySelector('#userPlaylist');
+const orangeDiv = document.querySelector('#searchedResults');
+const toggle = document.getElementById('toggle');
+toggle.onclick = function(){
+    toggle.classList.toggle('active');
+    body.classList.toggle('active');
+    header.classList.toggle('active');
+    hero.classList.toggle('active');
+    searchHistory.classList.toggle('active');
+    ticketmaster.classList.toggle('active');
+    clearSrcHistory.classList.toggle('active');
+    userPlaylist.classList.toggle('active');
+    searchedResults.classList.toggle('active');
+}
