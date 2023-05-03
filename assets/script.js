@@ -113,7 +113,7 @@ async function getRecommendations(type, textInput) {
 	let addBtn = document.createElement("button");
 	addBtn.setAttribute("id", "button-" + i);
     addBtn.textContent = "Save to Playlist";
-    addBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-nuetral-950 px-3 py-2")
+    addBtn.setAttribute("class", "text-neutral-950 border-solid border-4 font-semibold rounded hover:bg-neutral-100 hover:shadow-lg dark:border-sky-500 border-nuetral-950 px-3 py-2")
 	addBtn.setAttribute("onClick", "returnElementId123(this.id)");
 	songSuggestion.append(iframe);
 	suggestions.append(songSuggestion, addBtn);
