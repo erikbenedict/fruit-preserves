@@ -3,11 +3,15 @@ const clientSecret = "3e7065f63a874ad5a2c715aa6c24aed9";
 const searchedResults = document.getElementById("searchedResults");
 const suggestions = document.getElementById("suggestions");
 const suggestedSong = document.getElementById("theSongs");
+const addedSongs = document.getElementById('addedSongs');
 const searchForm = document.getElementById("searchForm");
 const searchInput = document.getElementById("srcInput");
 const searchType = document.getElementById("searchType");
 const prevSearches = document.getElementById("previousSearches");
+const clearUserPlaylistButton = document.getElementById('clearUserPlaylist');
+const clearSearchHistoryButton = document.getElementById('clearSrcHistory');
 let searchHistoryItems = [];
+let userPlaylistItems = [];
 
 searchForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -88,8 +92,6 @@ async function getRecommendations(type, textInput) {
 	  },
 	});
 	const recommendationsData = await recommendationsResponse.json();
-  //    ! >>>>>>>>> recommendations data >>>>>>> !
-	console.log('>>>>> recommendationsData >>>>', recommendationsData);
   //   * Display recommended track in the searchedResults div *
 	//  * clears previous suggestions
 	suggestions.innerHTML = '';
@@ -139,39 +141,71 @@ async function getAccessToken() {
 }
 
 function returnElementId123(elementId) {
-	var buttonId = elementId;
-	var iframeId = buttonId.toString().split("-")[1];
+	let buttonId = elementId;
+	let iframeId = buttonId.toString().split("-")[1];
 	const node = document.getElementById("iframe-" + iframeId);
 	const clone = node.cloneNode(true);
-	var songNumber = (document.getElementById("addedSongs").childElementCount/3) + 1;
-	var thisSong = document.createElement("h2");
-	thisSong.textContent = songNumber.toString() + ')';  
-	document.getElementById("addedSongs").appendChild(thisSong); 
-	document.getElementById("addedSongs").appendChild(clone);
-	let addArtistBtn = document.createElement("button");
-	addArtistBtn.setAttribute("id", "button-" + songNumber);
-	addArtistBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-neutral-950 px-3 py-2")
-	addArtistBtn.textContent = "Check out upcoming Concerts!";
-	document.getElementById("addedSongs").appendChild(addArtistBtn);
-	addArtistBtn.addEventListener('click', () => {
-		let artistName = clone.getAttribute('data-artist');
-		console.log(artistName);
-	})
+	userPlaylistItems.push({name: `${clone.getAttribute('data-artist')}`, iframe: clone.outerHTML});
+	storeUserPlaylist();
+	if(userPlaylistItems.length >= 5){
+	  userPlaylistItems.shift();
+	}
+	renderUserPlaylistItems();
   }
 
-const clearSearchHistoryButton = document.getElementById('clearSrcHistory')
+  function storeUserPlaylist() {
+	localStorage.setItem('userPlaylistItems', JSON.stringify(userPlaylistItems));
+  }
+
+  async function renderUserPlaylistItems() {
+	addedSongs.innerHTML = '';
+	let userPlaylistItems = JSON.parse(localStorage.getItem('userPlaylistItems')) || [];
+	userPlaylistItems.forEach((item) => {
+		let thisSong = document.createElement("h2");
+		thisSong.textContent = (addedSongs.childElementCount/3) + 1 + ')';
+		addedSongs.appendChild(thisSong);
+		let clone = document.createElement('div');
+		clone.innerHTML = item.iframe;
+		addedSongs.appendChild(clone.firstChild);
+		let addArtistBtn = document.createElement("button");
+		addArtistBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-neutral-950 px-3 py-2");
+		addArtistBtn.textContent = "Check out upcoming Concerts!";
+		addedSongs.appendChild(addArtistBtn);
+		addArtistBtn.addEventListener('click', () => {
+		let artistName = item.name;
+		console.log(artistName);
+		// TODO: ADD TICKETMASTER SEARCH FUNCTION
+	})
+	});
+  }
+
+function loadSavedPlaylist() {
+let storedUserPlaylist = JSON.parse(localStorage.getItem("userPlaylistItems"));
+if (storedUserPlaylist !== null) {
+	userPlaylistItems = storedUserPlaylist;
+}
+renderUserPlaylistItems();
+}
+
+function loadSavedSearches() {
+let storedSearches = JSON.parse(localStorage.getItem("localStoredSearches"));
+if (storedSearches !== null) {
+searchHistoryItems = storedSearches;
+}
+renderSearchHistoryItems();
+}
+
 clearSearchHistoryButton.addEventListener('click', function(){
     prevSearches.innerHTML = "";
     searchHistoryItems = [];
     localStorage.clear();
 });
 
-function loadSavedSearches() {
-  let storedSearches = JSON.parse(localStorage.getItem("localStoredSearches"));
-  if (storedSearches !== null) {
-    searchHistoryItems = storedSearches;
-  }
-  renderSearchHistoryItems();
-}
+clearUserPlaylistButton.addEventListener('click', function(){
+    addedSongs.innerHTML = "";
+    userPlaylistItems = [];
+    localStorage.clear();
+});
 
 loadSavedSearches();
+loadSavedPlaylist();
