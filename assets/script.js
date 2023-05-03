@@ -33,24 +33,24 @@ function storeSearches() {
   }
 
 function renderSearchHistoryItems() {
-prevSearches.innerHTML = "";
+	prevSearches.innerHTML = "";
 	for (let i = 0; i < searchHistoryItems.length; i++) {
-	let searchHistoryItem = searchHistoryItems[i];
-	let searchHistoryLine = document.createElement('div');
-	let searchHistoryBtn = document.createElement('button');
-	searchHistoryBtn.setAttribute('class', 'bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow my-1');
-	searchHistoryBtn.setAttribute('id', 'searchHistoryBtn');
-	searchHistoryBtn.textContent = searchHistoryItem;
-	searchHistoryLine.append(searchHistoryBtn);
-	prevSearches.append(searchHistoryLine);
-	searchHistoryBtn.addEventListener('click', () => {
-	let textInput = searchHistoryBtn.textContent.split(':')[0].trim();
-	let type = searchHistoryBtn.textContent.split(':')[1].trim();
-	getRecommendations(type, textInput);
-	})
+		let searchHistoryItem = searchHistoryItems[i];
+		let searchHistoryLine = document.createElement('div');
+		let searchHistoryBtn = document.createElement('button');
+		searchHistoryBtn.setAttribute('class', 'bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow my-1');
+		searchHistoryBtn.setAttribute('id', 'searchHistoryBtn');
+		searchHistoryBtn.textContent = searchHistoryItem;
+		searchHistoryLine.append(searchHistoryBtn);
+		prevSearches.append(searchHistoryLine);
+		searchHistoryBtn.addEventListener('click', () => {
+		let textInput = searchHistoryBtn.textContent.split(':')[0].trim();
+		let type = searchHistoryBtn.textContent.split(':')[1].trim();
+		getRecommendations(type, textInput);
+		})
 	};
 	if(searchHistoryItems.length === 5){
-	searchHistoryItems.shift();
+		searchHistoryItems.shift();
 	}
 }
 
@@ -153,11 +153,11 @@ function returnElementId123(elementId) {
 	renderUserPlaylistItems();
   }
 
-  function storeUserPlaylist() {
-	localStorage.setItem('userPlaylistItems', JSON.stringify(userPlaylistItems));
-  }
+function storeUserPlaylist() {
+localStorage.setItem('userPlaylistItems', JSON.stringify(userPlaylistItems));
+}
 
-  async function renderUserPlaylistItems() {
+function renderUserPlaylistItems() {
 	addedSongs.innerHTML = '';
 	let userPlaylistItems = JSON.parse(localStorage.getItem('userPlaylistItems')) || [];
 	userPlaylistItems.forEach((item) => {
@@ -180,19 +180,19 @@ function returnElementId123(elementId) {
   }
 
 function loadSavedPlaylist() {
-let storedUserPlaylist = JSON.parse(localStorage.getItem("userPlaylistItems"));
-if (storedUserPlaylist !== null) {
-	userPlaylistItems = storedUserPlaylist;
-}
-renderUserPlaylistItems();
+	let storedUserPlaylist = JSON.parse(localStorage.getItem("userPlaylistItems"));
+	if (storedUserPlaylist !== null) {
+		userPlaylistItems = storedUserPlaylist;
+	}
+	renderUserPlaylistItems();
 }
 
 function loadSavedSearches() {
-let storedSearches = JSON.parse(localStorage.getItem("localStoredSearches"));
-if (storedSearches !== null) {
-searchHistoryItems = storedSearches;
-}
-renderSearchHistoryItems();
+	let storedSearches = JSON.parse(localStorage.getItem("localStoredSearches"));
+	if (storedSearches !== null) {
+	searchHistoryItems = storedSearches;
+	}
+	renderSearchHistoryItems();
 }
 
 clearSearchHistoryButton.addEventListener('click', function(){
