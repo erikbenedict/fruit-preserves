@@ -1,3 +1,10 @@
+:root {
+    --Light: #f8f8f8;
+    --Dark: #1F2833;
+    --LightCyan: #45A29E;
+    --DarkCyan: #66FCF1;
+    --textContent: #c5c5c5;
+}
 * {
     margin: 10px;
     box-sizing: border-box;
@@ -76,15 +83,40 @@ body.active{
 }
 
 /* Body */
-#hero {
-    padding: 35px;
-    background-color: #66FCF1;
-    text-align-last: end;
-    margin: 10px;
-    font-size: 1.3em;
-    transition: 0.5s;
+.hero {
+    height: 480px;
+    width: 100%;
+    margin: 0px;
+    padding: 70px;
+    color: white;
+    text-align: center;
+    background-image: url(./jam-jamming\ \(2\).jpg);
+    background-size: cover;
+    background-position: center;
 }
-#hero.active {
+
+.hero-1 {
+    height: 80px;
+    width: 50%;
+    margin: auto;
+    /* text-align: center; */
+    background-color: rgb(8, 242, 110, 70%);
+}
+
+.hero-2 {
+    height: 100px;
+    margin: auto;
+    width: 50%;
+    background-color: rgb(42, 157, 244, 70%);
+}
+
+.hero-3 {
+    height: 80px;
+    margin: auto;
+    width: 50%;
+    background-color: rgb(207 102 121 / 70%);
+}
+.hero.active {
     background-color: #45A29E;
 }
 /* Put it on Script */
@@ -94,7 +126,7 @@ body.active{
     transition: 0.5s;
 }
 #searchHistory.active {
-    background-color: #CF6679;
+    background-color: #cf6679;
     color: #def7f6;
 }
 #clearSrcHistory {
@@ -112,7 +144,7 @@ body.active{
     transition: 0.5s;
 }
 #ticketmaster.active {
-    background-color: #08f26e;
+    background-color: rgb(8, 242, 110);
     color: #def7f6;
 }
 #userPlaylist {
