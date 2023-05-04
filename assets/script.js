@@ -112,7 +112,7 @@ async function getRecommendations(type, textInput) {
 	let addBtn = document.createElement("button");
 	addBtn.setAttribute("id", "button-" + i);
     addBtn.textContent = "Save to Playlist";
-    addBtn.setAttribute("class", "text-neutral-950 border-solid border-4 font-semibold rounded hover:bg-neutral-100 hover:shadow-lg dark:border-sky-500 border-neutral-950 px-3 py-2")
+    addBtn.setAttribute("class", "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded my-1")
 	addBtn.setAttribute("onClick", "returnElementId123(this.id)");
 	songSuggestion.append(iframe);
 	suggestions.append(songSuggestion, addBtn);
@@ -166,7 +166,7 @@ function renderUserPlaylistItems() {
 		clone.innerHTML = item.iframe;
 		addedSongs.appendChild(clone.firstChild);
 		let addArtistBtn = document.createElement("button");
-		addArtistBtn.setAttribute("class", "text-neutral-950 border-solid border-4 font-semibold rounded hover:bg-neutral-100 hover:shadow-lg dark:border-sky-500 border-neutral-950 px-3 py-2 m-1");
+		addArtistBtn.setAttribute("class", "bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 border-b-4 border-amber-700 hover:border-amber-500 rounded my-1");
 		addArtistBtn.textContent = "Check out upcoming Concerts!";
 		addedSongs.appendChild(addArtistBtn);
 		addArtistBtn.addEventListener('click', () => {
