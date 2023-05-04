@@ -173,9 +173,7 @@ function renderUserPlaylistItems() {
 		addedSongs.appendChild(addArtistBtn);
 		addArtistBtn.addEventListener('click', () => {
 		let artistName = item.name;
-		console.log(artistName);
     getArtistId(artistName);
-		// TODO: ADD TICKETMASTER SEARCH FUNCTION
 	})
 	});
   }
@@ -213,26 +211,32 @@ let getConcertData = async function(artistId){
     let response2 = await fetch(concertsEndpoint);
     let data2 = await response2.json();
     ticketmasterDiv.innerHTML='';
+    console.log(data2);
+    if(!data2['_embedded'] || !data2._embedded['events']){
+      console.log('no concerts');
+      const noConcertsDiv = document.createElement('div');
+      const noConcertsMessage = document.createTextNode('No concerts at this time, please try another artist');
+      noConcertsDiv.appendChild(noConcertsMessage);
+      ticketmasterDiv.appendChild(noConcertsDiv);
+      return
+    } else {
     for(i = 0; i < 5 && i < data2._embedded.events.length; i++){
         let name = data2._embedded.events[i].name
         let date = data2._embedded.events[i].dates.start.localDate
         let url = data2._embedded.events[i].url
         renderConcertData(name, date, url);
-    }
-    console.log('I think this is an array >>>>>')
-    console.log(data2._embedded.events);
-    console.log(data2._embedded.events[0]);
+    }}
 };
 
 let renderConcertData = function(name, date, url){
   const concertInfo = document.createElement('div');
-  let concertName = document.createTextNode(name)
-  const concertDateLabel = document.createTextNode(' | Date: ')
-  let concertDate = document.createTextNode(date)
-  const concertVenueLabel = document.createTextNode(' | ');
-  const concertVenue = document.createElement('a')
-  concertVenue.setAttribute('href', url)
-  const venueLink = document.createTextNode(' | Click here for more information');
+  let concertName = document.createTextNode(name);
+  const concertDateLabel = document.createTextNode(' | Date: ');
+  let concertDate = document.createTextNode(date);
+  const concertVenueLabel = document.createTextNode('');
+  const concertVenue = document.createElement('a');
+  concertVenue.setAttribute('href', url);
+  const venueLink = document.createTextNode('| Click here for more information');
   concertVenue.appendChild(venueLink);
 
   concertInfo.appendChild(concertName);
