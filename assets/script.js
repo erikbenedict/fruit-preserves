@@ -2,7 +2,6 @@ const clientId = "463e1867583147f78d5b25bcc0004dda";
 const clientSecret = "3e7065f63a874ad5a2c715aa6c24aed9";
 const searchedResults = document.getElementById("searchedResults");
 const suggestions = document.getElementById("suggestions");
-const suggestedSong = document.getElementById("theSongs");
 const addedSongs = document.getElementById('addedSongs');
 const searchForm = document.getElementById("searchForm");
 const searchInput = document.getElementById("srcInput");
@@ -136,7 +135,6 @@ async function getAccessToken() {
 		const token = data_1.access_token;
 		return token;
 	} catch (error) {
-		console.log(error);
 	}
 }
 
@@ -211,9 +209,7 @@ let getConcertData = async function(artistId){
     let response2 = await fetch(concertsEndpoint);
     let data2 = await response2.json();
     ticketmasterDiv.innerHTML='';
-    console.log(data2);
     if(!data2['_embedded'] || !data2._embedded['events']){
-      console.log('no concerts');
       const noConcertsDiv = document.createElement('div');
       const noConcertsMessage = document.createTextNode('No concerts at this time, please try another artist');
       noConcertsDiv.appendChild(noConcertsMessage);
@@ -238,7 +234,6 @@ let renderConcertData = function(name, date, url){
   concertVenue.setAttribute('href', url);
   const venueLink = document.createTextNode('| Click here for more information');
   concertVenue.appendChild(venueLink);
-
   concertInfo.appendChild(concertName);
   concertInfo.appendChild(concertDateLabel);
   concertInfo.appendChild(concertDate);
