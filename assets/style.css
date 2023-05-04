@@ -40,7 +40,7 @@ body.active{
 .titles.active {
     color: #45A29E;
 }
-#toggle { /* https://www.youtube.com/watch?v=gzCUq_VQ7Y8 */
+#toggle {
     position: relative;
     display: block;
     width: 120px;
@@ -88,7 +88,7 @@ body.active{
     width: 100%;
     margin: 0px;
     padding: 70px;
-    color: white;
+    color: #334155;
     text-align: center;
     background-image: url(./images/jam-jamming\ \(2\).jpg);
     background-size: cover;
@@ -97,29 +97,40 @@ body.active{
 
 .hero-1 {
     height: 80px;
-    width: 50%;
+    width: 30%;
     margin: auto;
     /* text-align: center; */
-    background-color: rgb(8, 242, 110, 70%);
+    background-color: #059152;
+    transition: 0.5s;
 }
 
 .hero-2 {
     height: 100px;
     margin: auto;
-    width: 50%;
-    background-color: rgb(42, 157, 244, 70%);
+    width: 30%;
+    background-color: #1167b1;
+    transition: 0.5s;
 }
 
 .hero-3 {
     height: 80px;
     margin: auto;
-    width: 50%;
-    background-color: rgb(207 102 121 / 70%);
+    width: 30%;
+    background-color: #c41416;
+    transition: 0.5s;
 }
-.hero.active {
-    background-color: #45A29E;
+.hero-1.active {
+    background-color: #08f26e;
+    color: var(--Dark);
 }
-/* Put it on Script */
+.hero-2.active {
+    background-color: #2a9df4;
+    color: var(--Dark);
+}
+.hero-3.active {
+    background-color: #cf6679;
+    color: var(--Dark);
+}
 #searchHistory {
     background-color: #c41416;
     color: #0B0C10;
@@ -127,15 +138,6 @@ body.active{
 }
 #searchHistory.active {
     background-color: #cf6679;
-    color: #def7f6;
-}
-#clearSrcHistory {
-    background-color: #C54D57;
-    color: #0B0C10;
-    transition: 0.5s;
-}
-#clearSrcHistory.active {
-    background-color: #FF6B6B;
     color: #def7f6;
 }
 #ticketmaster {

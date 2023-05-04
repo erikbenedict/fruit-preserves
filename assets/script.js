@@ -113,7 +113,7 @@ async function getRecommendations(type, textInput) {
 	let addBtn = document.createElement("button");
 	addBtn.setAttribute("id", "button-" + i);
     addBtn.textContent = "Save to Playlist";
-    addBtn.setAttribute("class", "text-neutral-950 border-solid border-4 font-semibold rounded hover:bg-neutral-100 hover:shadow-lg dark:border-sky-500 border-nuetral-950 px-3 py-2")
+    addBtn.setAttribute("class", "bg-amber-500 hover:bg-amber-400 text-white font-bold py-2 px-4 border-b-4 border-amber-700 hover:border-amber-500 rounded my-1")
 	addBtn.setAttribute("onClick", "returnElementId123(this.id)");
 	songSuggestion.append(iframe);
 	suggestions.append(songSuggestion, addBtn);
@@ -162,13 +162,12 @@ function renderUserPlaylistItems() {
 	let userPlaylistItems = JSON.parse(localStorage.getItem('userPlaylistItems')) || [];
 	userPlaylistItems.forEach((item) => {
 		let thisSong = document.createElement("h2");
-		thisSong.textContent = (addedSongs.childElementCount/3) + 1 + ')';
 		addedSongs.appendChild(thisSong);
 		let clone = document.createElement('div');
 		clone.innerHTML = item.iframe;
 		addedSongs.appendChild(clone.firstChild);
 		let addArtistBtn = document.createElement("button");
-		addArtistBtn.setAttribute("class", "text-neutral-950 border-solid border-4 dark:border-sky-500 border-neutral-950 px-3 py-2");
+		addArtistBtn.setAttribute("class", "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded my-1");
 		addArtistBtn.textContent = "Check out upcoming Concerts!";
 		addedSongs.appendChild(addArtistBtn);
 		addArtistBtn.addEventListener('click', () => {
@@ -261,24 +260,27 @@ clearUserPlaylistButton.addEventListener('click', function(){
 
 loadSavedSearches();
 loadSavedPlaylist();
+
 // Light & Dark Mode //
 const body = document.querySelector('body');
 const header = document.querySelector('.titles');
-const div = document.querySelector('#hero');
 const redDiv = document.querySelector('#searchHistory');
 const greenDiv = document.querySelector('#ticketmaster');
-const button = document.querySelector('#clearSrcHistory');
 const blueDiv = document.querySelector('#userPlaylist');
 const orangeDiv = document.querySelector('#searchedResults');
+const hero1 = document.querySelector('.hero-1');
+const hero2 = document.querySelector('.hero-2');
+const hero3 = document.querySelector('.hero-3');
 const toggle = document.getElementById('toggle');
 toggle.onclick = function(){
     toggle.classList.toggle('active');
     body.classList.toggle('active');
     header.classList.toggle('active');
-    hero.classList.toggle('active');
     searchHistory.classList.toggle('active');
     ticketmaster.classList.toggle('active');
-    clearSrcHistory.classList.toggle('active');
     userPlaylist.classList.toggle('active');
     searchedResults.classList.toggle('active');
+	hero1.classList.toggle('active');
+	hero2.classList.toggle('active');
+	hero3.classList.toggle('active');
 }
