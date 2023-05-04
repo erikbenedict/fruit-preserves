@@ -5,41 +5,50 @@
     --DarkCyan: #66FCF1;
     --textContent: #c5c5c5;
 }
+
 * {
     box-sizing: border-box;
 }
+
 body{
     min-height: 100vh;
     background-color: #1F2833;
     color:#c5c5c5;
     transition: 0.5s;
 }
+
 body.active{
     background: #f8f8f8;
 }
-/* Header */
+
 .top-bar h1, .top-bar h2 {
    margin: 5px; 
+   margin: 10px;
    font-weight: 900;
    font-size: 35px;
 }
 
 .top-bar {
     width: 100%;
+    margin: 10px;
     padding: 0 20px 10px 20px;
     display: flex;
     justify-content: space-between;
 }
+
 .titles, #toggle {
     width: 50%;
 }
+
 .titles {
     color: #66FCF1;
 }
+
 .titles.active {
     color: #45A29E;
 }
-#toggle { /* https://www.youtube.com/watch?v=gzCUq_VQ7Y8 */
+
+#toggle { 
     position: relative;
     display: block;
     width: 120px;
@@ -53,6 +62,7 @@ body.active{
                 inset 0 8px 8px rgba(0,0,0,0.1),
                 inset 0 -4px 4px rgba(0,0,0,0.1);
 }
+
 #toggle.active{
     background: #fff;
     margin: 10px;
@@ -60,11 +70,13 @@ body.active{
                 inset 0 2px 8px rgba(0,0,0,0.1),
                 inset 0 -4px 4px rgba(0,0,0,0.05);
 }
+
 #toggle .indicator {
     position: absolute;
     top: -10px;
     left: -10px;
     width: 50px;
+    margin: 10px;
     height: 50px;
     margin: 10px;
     background: linear-gradient(to bottom, #444, #222);
@@ -85,7 +97,6 @@ body.active{
                 inset 0 -4px 4px rgba(255,255,255,1);
 }
 
-/* Body */
 .hero {
     background-image: url(./images/jam-jamming\ \(2\).jpg);
     background-size: cover;
@@ -112,6 +123,7 @@ body.active{
     color: #0B0C10;
     transition: 0.5s;
 }
+
 #searchHistory.active {
     background-color: #cf6679;
     color: #def7f6;
@@ -121,29 +133,35 @@ body.active{
     background-color: #FF6B6B;
     color: #def7f6;
 }
+
 #ticketmaster {
     background-color: #059152;
     color: #0B0C10;
     transition: 0.5s;
 }
+
 #ticketmaster.active {
     background-color: rgb(8, 242, 110);
     color: #def7f6;
 }
+
 #userPlaylist {
     background-color: #1167b1;
     color: #0B0C10;
     transition: 0.5s;
 }
+
 #userPlaylist.active {
     background-color: #2a9df4;
     color: #def7f6;
 }
+
 #searchedResults {
     background-color: #F58216;
     color: #0B0C10;
     transition: 0.5s;
 }
+
 #searchedResults.active {
     background-color: #FFB347;
     color: #def7f6;
