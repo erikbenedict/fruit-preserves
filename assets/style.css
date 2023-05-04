@@ -76,7 +76,6 @@ body.active{
     top: -10px;
     left: -10px;
     width: 50px;
-    margin: 10px;
     height: 50px;
     margin: 10px;
     background: linear-gradient(to bottom, #444, #222);
@@ -97,6 +96,7 @@ body.active{
                 inset 0 -4px 4px rgba(255,255,255,1);
 }
 
+/* * Body * */
 .hero {
     background-image: url(./images/jam-jamming\ \(2\).jpg);
     background-size: cover;
@@ -126,11 +126,6 @@ body.active{
 
 #searchHistory.active {
     background-color: #cf6679;
-    color: #def7f6;
-}
-
-#clearSrcHistory.active {
-    background-color: #FF6B6B;
     color: #def7f6;
 }
 
