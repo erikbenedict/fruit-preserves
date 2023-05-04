@@ -16,40 +16,23 @@
     <div id="toggle">
         <i class="indicator"></i>
     </div>
-</header>
-  <div class="hero h-96 m-2" id="hero"></div>
+  </header>
+    <div class="hero h-96 m-2" id="hero"></div>
 <main>
   <div>
     <div id="searchDiv" class="m-2 md:flex md:justify-center">
       <form id="searchForm" class="md:w-2/5">
         <label for="srcInput" class="block font-medium leading-6 text-white underline ml-1 md:text-center">Enter search terms</label>
         <div class="relative mt-2 rounded-md shadow-sm">
-          <div
-            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
-          ></div>
-          <input
-            type="text"
-            name="srcInput"
-            id="srcInput"
-            class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            placeholder="Search"
-          />
+          <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"></div>
+          <input type="text" name="srcInput" id="srcInput" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Search"/>
           <div class="absolute inset-y-0 right-0 flex items-center">
-            <select
-              id="searchType"
-              name="searchType"
-              class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm mx-1"
-            >
+            <select id="searchType" name="searchType" class="h-full rounded-md border-0 bg-transparent py-0 pl-2 pr-7 text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm mx-1">
               <option>Artist</option>
               <option>Song</option>
               <option>Genre</option>
             </select>
-            <button
-              id="searchBtn"
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 mx-1 rounded"
-            >
-              Let's Jam!
-            </button>
+            <button id="searchBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 mx-1 rounded">Let's Jam!</button>
           </div>
         </div>
       </form>
@@ -61,29 +44,21 @@
           <button id="clearSrcHistory" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded my-1">Clear search history</button>
       </div> 
     </div>
-
-        <div
-          id="searchedResults"
-          class="bg-neutral-400 rounded-lg shadow-xl row-span-4 p-2 m-2"
-        >
+    <div class="md:flex md:justify-center">
+        <div id="searchedResults" class="bg-neutral-400 rounded-lg shadow-xl row-span-4 p-2 m-2 md:w-1/2 lg:w-2/5">
         <h2 class="text-lg font-bold text-white underline">Check out these jams!</h2>
             <div id="suggestions">
             </div>
         </div>
-        <div
-          id="userPlaylist"
-          class="bg-blue-500 rounded-lg shadow-xl min-h-[300px] row-span-4 m-2 p-2"
-        >
+        <div id="userPlaylist" class="bg-blue-500 rounded-lg shadow-xl min-h-[300px] row-span-4 m-2 p-2 md:w-1/2 lg:w-2/5"">
           <h3 class="text-lg font-bold text-white underline">My Fresh Picks:</h3>
           <div class="fresh-playlist">
             <ul id="addedSongs"></ul>
             <button id="clearUserPlaylist" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded my-1">Clear Playlist</button>
           </div>
         </div>
-        <div
-          id="ticketmaster"
-          class="bg-green-500 rounded-lg shadow-xl min-h-[300px] col-span-3 m-2 p-2"
-        >
+    </div>
+        <div id="ticketmaster" class="bg-green-500 rounded-lg shadow-xl min-h-[300px] col-span-3 m-2 p-2 text-lg md:font-bold">
           <h3 class="text-lg font-bold text-white underline">Upcoming concerts</h3>
           <div id="concerts"></div>
         </div>

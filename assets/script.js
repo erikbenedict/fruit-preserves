@@ -238,7 +238,7 @@ let renderConcertData = function(name, date, url){
   concertVenue.setAttribute('href', url);
   const venueLink = document.createTextNode('| Click here for more information');
   concertVenue.appendChild(venueLink);
-
+  concertVenue.setAttribute('class', 'p-2 text-blue-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white');
   concertInfo.appendChild(concertName);
   concertInfo.appendChild(concertDateLabel);
   concertInfo.appendChild(concertDate);

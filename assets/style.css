@@ -116,11 +116,7 @@ body.active{
     background-color: #cf6679;
     color: #def7f6;
 }
-#clearSrcHistory {
-    background-color: #C54D57;
-    color: #0B0C10;
-    transition: 0.5s;
-}
+
 #clearSrcHistory.active {
     background-color: #FF6B6B;
     color: #def7f6;
