@@ -173,8 +173,7 @@ function renderUserPlaylistItems() {
 		addedSongs.appendChild(addArtistBtn);
 		addArtistBtn.addEventListener('click', () => {
 		let artistName = item.name;
-		console.log(artistName);
-		// TODO: ADD TICKETMASTER SEARCH FUNCTION
+    getArtistId(artistName);
 	})
 	});
   }
@@ -193,6 +192,59 @@ function loadSavedSearches() {
 	searchHistoryItems = storedSearches;
 	}
 	renderSearchHistoryItems();
+}
+
+let getArtistId = async function(searchTerm){
+    let tempSearch = 'marina';
+    let artistEndpoint = 'https://app.ticketmaster.com/discovery/v2/attractions.json?keyword=' + searchTerm + '&apikey=OG2fkxjdAsu6SUo15migEcOBGuAtVBAL';
+    let response = await fetch(artistEndpoint);
+    let data = await response.json();
+    for(i = 0; i < 5 && i < data._embedded.attractions.length; i++){
+        await getConcertData(data._embedded.attractions[i].id);
+    }
+};
+
+const ticketmasterDiv = document.getElementById('concerts');
+
+let getConcertData = async function(artistId){
+    let concertsEndpoint = 'https://app.ticketmaster.com/discovery/v2/events.json?attractionId=' + artistId + '&apikey=OG2fkxjdAsu6SUo15migEcOBGuAtVBAL';
+    let response2 = await fetch(concertsEndpoint);
+    let data2 = await response2.json();
+    ticketmasterDiv.innerHTML='';
+    console.log(data2);
+    if(!data2['_embedded'] || !data2._embedded['events']){
+      console.log('no concerts');
+      const noConcertsDiv = document.createElement('div');
+      const noConcertsMessage = document.createTextNode('No concerts at this time, please try another artist');
+      noConcertsDiv.appendChild(noConcertsMessage);
+      ticketmasterDiv.appendChild(noConcertsDiv);
+      return
+    } else {
+    for(i = 0; i < 5 && i < data2._embedded.events.length; i++){
+        let name = data2._embedded.events[i].name
+        let date = data2._embedded.events[i].dates.start.localDate
+        let url = data2._embedded.events[i].url
+        renderConcertData(name, date, url);
+    }}
+};
+
+let renderConcertData = function(name, date, url){
+  const concertInfo = document.createElement('div');
+  let concertName = document.createTextNode(name);
+  const concertDateLabel = document.createTextNode(' | Date: ');
+  let concertDate = document.createTextNode(date);
+  const concertVenueLabel = document.createTextNode('');
+  const concertVenue = document.createElement('a');
+  concertVenue.setAttribute('href', url);
+  const venueLink = document.createTextNode('| Click here for more information');
+  concertVenue.appendChild(venueLink);
+
+  concertInfo.appendChild(concertName);
+  concertInfo.appendChild(concertDateLabel);
+  concertInfo.appendChild(concertDate);
+  concertInfo.appendChild(concertVenueLabel);
+  concertInfo.appendChild(concertVenue);
+  ticketmasterDiv.appendChild(concertInfo)
 }
 
 clearSearchHistoryButton.addEventListener('click', function(){
