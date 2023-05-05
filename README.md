@@ -51,7 +51,7 @@ Here is a list of our motivations for this project!
   <br/>
 - Daniel Schopler - dmschopler@gmail.com
   <br/>
-- Rose Hobbs - astiiyia.dj@gmail.com
+- Rose Hobbs - akmhobbs@gmail.com
   <br/>
 - Laura Delaney - jordan3313.lj@gmail.com
 
