@@ -28,6 +28,15 @@ Here is a list of our motivations for this project!
 - Creating an application from scratch, and using Tailwind for layout and design
 - Create a quick, easy, and fun way to find new music without being overwhelmed by options
 
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+- Tailwind
+- Spotify API
+- Ticketmaster API
+
 ## Deployed Application
 
 [Click here to go to my Weather Outlook application!](https://erikbenedict.github.io/fruit-preserves/)
