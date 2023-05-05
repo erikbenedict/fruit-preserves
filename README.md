@@ -39,7 +39,7 @@ Here is a list of our motivations for this project!
 
 ## Deployed Application
 
-[Click here to go to my Weather Outlook application!](https://erikbenedict.github.io/fruit-preserves/)
+[Click here to go to the Fruit Preserves application!](https://erikbenedict.github.io/fruit-preserves/)
 
 ## Screenshots
 
