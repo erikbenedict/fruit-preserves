@@ -22,28 +22,6 @@ body.active{
 }
 
 /* * Header * */
-.top-bar h1, .top-bar h2 {
-   margin: 5px; 
-   margin: 10px;
-   font-weight: 900;
-   font-size: 35px;
-}
-
-.top-bar {
-    width: 100%;
-    margin: 10px;
-    padding: 0 20px 10px 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.titles, #toggle {
-    width: 50%;
-}
-
-.titles {
-    color: #66FCF1;
-}
 
 .titles.active {
     color: #45A29E;
@@ -98,27 +76,6 @@ body.active{
 }
 
 /* * Body * */
-.hero {
-    background-image: url(./images/jam-jamming\ \(2\).jpg);
-    background-size: cover;
-    background-position: center;
-}
-
-.hero-1 {
-    background-color: rgb(8, 242, 110);
-}
-
-.hero-2 {
-    background-color: rgb(42, 157, 244);
-}
-
-.hero-3 {
-    background-color: rgb(207, 102, 121);
-}
-.hero.active {
-    background-color: #45A29E;
-}
-
 #searchHistory {
     background-color: #c41416;
     color: #0B0C10;
