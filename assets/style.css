@@ -77,8 +77,6 @@ body.active{
 
 /* * Body * */
 #searchHistory {
-    background-color: #c41416;
-    color: #0B0C10;
     transition: 0.5s;
 }
 
@@ -88,8 +86,6 @@ body.active{
 }
 
 #ticketmaster {
-    background-color: #059152;
-    color: #0B0C10;
     transition: 0.5s;
 }
 
@@ -99,8 +95,6 @@ body.active{
 }
 
 #userPlaylist {
-    background-color: #1167b1;
-    color: #0B0C10;
     transition: 0.5s;
 }
 
@@ -110,8 +104,6 @@ body.active{
 }
 
 #searchedResults {
-    background-color: #F58216;
-    color: #0B0C10;
     transition: 0.5s;
 }
 

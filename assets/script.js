@@ -37,7 +37,7 @@ function renderSearchHistoryItems() {
 		let searchHistoryItem = searchHistoryItems[i];
 		let searchHistoryLine = document.createElement('div');
 		let searchHistoryBtn = document.createElement('button');
-		searchHistoryBtn.setAttribute('class', 'bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow my-1');
+		searchHistoryBtn.setAttribute('class', 'bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow my-1 w-1/3');
 		searchHistoryBtn.setAttribute('id', 'searchHistoryBtn');
 		searchHistoryBtn.textContent = searchHistoryItem;
 		searchHistoryLine.append(searchHistoryBtn);
@@ -50,6 +50,10 @@ function renderSearchHistoryItems() {
 	};
 	if(searchHistoryItems.length === 5){
 		searchHistoryItems.shift();
+	}
+	if(searchHistoryItems.length >= 1){
+		clearSearchHistoryButton.removeAttribute('class', 'hidden');
+		clearSearchHistoryButton.setAttribute('class', 'bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded my-1')
 	}
 }
 
@@ -145,9 +149,6 @@ function returnElementId123(elementId) {
 	const clone = node.cloneNode(true);
 	userPlaylistItems.push({name: `${clone.getAttribute('data-artist')}`, iframe: clone.outerHTML});
 	storeUserPlaylist();
-	if(userPlaylistItems.length >= 5){
-	  userPlaylistItems.shift();
-	}
 	renderUserPlaylistItems();
   }
 
@@ -159,9 +160,6 @@ function renderUserPlaylistItems() {
 	addedSongs.innerHTML = '';
 	let userPlaylistItems = JSON.parse(localStorage.getItem('userPlaylistItems')) || [];
 	userPlaylistItems.forEach((item) => {
-		let thisSong = document.createElement("h2");
-		thisSong.textContent = (addedSongs.childElementCount/3) + 1 + ')';
-		addedSongs.appendChild(thisSong);
 		let clone = document.createElement('div');
 		clone.innerHTML = item.iframe;
 		addedSongs.appendChild(clone.firstChild);
@@ -174,6 +172,13 @@ function renderUserPlaylistItems() {
     getArtistId(artistName);
 	})
 	});
+	if(userPlaylistItems.length >= 5){
+		userPlaylistItems.shift();
+	  }
+	if(userPlaylistItems.length >= 1){
+		clearUserPlaylistButton.removeAttribute('class', 'hidden');
+		clearUserPlaylistButton.setAttribute('class', 'bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded my-1')
+	}
   }
 
 function loadSavedPlaylist() {

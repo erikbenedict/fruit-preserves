@@ -14,9 +14,9 @@
 <body>
   <header class="top-bar flex justify-between w-full m-2.5 px-5 py-2.5">
     <div class="m-5 p-2">
-      <a href="."><i class="fa-solid fa-jar fa-2xl" style="color: #f72808;"></i> <span class="text-xl font-bold text-green-200">Home</span> <i class="fa-solid fa-headphones-simple fa-2xl" style="color: #f72808;"></i></a>
+      <a href="."><i class="fa-solid fa-jar fa-2xl" style="color: #f72808;"></i> <span class="text-xl font-bold text-teal-300">Home</span> <i class="fa-solid fa-headphones-simple fa-2xl" style="color: #f72808;"></i></a>
     </div>
-    <div class="titles font-black text-center text-5xl text-green-200">
+    <div class="titles font-black text-center text-5xl text-teal-300">
       <h1 class="underline mb-1 text-7xl">Fruit Preserves</h1>
       <h2 class="text-5xl">Pick Your Jams!</h2>
     </div>
@@ -28,7 +28,7 @@
   <div>
     <div id="searchDiv" class="m-2 md:flex md:justify-center">
       <form id="searchForm" class="md:w-5/12">
-        <label for="srcInput" class="block leading-6 text-green-200 text-lg font-bold underline ml-1 md:text-center">Enter search terms</label>
+        <label for="srcInput" class="block leading-6 text-white text-lg font-bold underline ml-1 md:text-center">Enter search terms</label>
         <div class="relative mt-2 rounded-md shadow-sm">
           <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"></div>
           <input type="text" name="srcInput" id="srcInput" class="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Search"/>
@@ -38,34 +38,34 @@
               <option>Song</option>
               <option>Genre</option>
             </select>
-            <button id="searchBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 mx-1 rounded">Let's Jam!</button>
+            <button id="searchBtn" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-1 px-2 mx-1 rounded">Let's Jam!</button>
           </div>
         </div>
       </form>
     </div>
     <div class="searchHistoryContainer md:flex md:justify-center text-center">
-      <div id="searchHistory" class="bg-zinc-500 rounded-lg shadow-xl min-h-min p-2 m-2 md:w-5/12">
-          <h2 class="text-lg font-bold text-white">Previous Searches:</h2>
+      <div id="searchHistory" class="bg-slate-500 rounded-lg shadow-xl min-h-min p-2 m-2 md:w-5/12">
+          <h2 class="text-lg font-bold text-white">Previous Searches</h2>
           <div id="previousSearches"></div>
-          <button id="clearSrcHistory" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded my-1">Clear search history</button>
+          <button id="clearSrcHistory" class="hidden">Clear search history</button>
       </div> 
     </div>
     <div class="md:flex md:justify-center">
-        <div id="searchedResults" class="bg-neutral-400 rounded-lg shadow-xl min-h-min p-2 my-2 mx-4 text-center md:w-1/2 lg:w-1/5">
+        <div id="searchedResults" class="bg-rose-500 rounded-lg shadow-xl min-h-min p-2 my-2 mx-4 text-center md:w-1/2 lg:w-1/5">
         <h2 class="text-lg font-bold text-white">Check out these jams!</h2>
             <div id="suggestions"></div>
         </div>
-        <div id="userPlaylist" class="bg-blue-500 rounded-lg shadow-xl min-h-min my-2 mx-4 text-center p-2 md:w-1/2 lg:w-1/5"">
-          <h3 class="text-lg font-bold text-white">My Fresh Picks:</h3>
+        <div id="userPlaylist" class="bg-indigo-600 rounded-lg shadow-xl min-h-min my-2 mx-4 text-center p-2 md:w-1/2 lg:w-1/5"">
+          <h3 class="text-lg font-bold text-white">My Fresh Picks</h3>
           <div class="fresh-playlist">
             <ul id="addedSongs"></ul>
-            <button id="clearUserPlaylist" class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded my-1">Clear Playlist</button>
+            <button id="clearUserPlaylist" class="hidden">Clear Playlist</button>
           </div>
         </div>
     </div>
     <div class="lg:flex lg:justify-center">
         <div id="ticketmaster" class="bg-green-500 rounded-lg shadow-xl col-span-3 m-2 p-2 text-lg text-center md:font-bold md:leading-10 md:w-5/12">
-          <h3 class="text-lg font-bold text-white underline">Upcoming concerts</h3>
+          <h3 class="text-lg font-bold text-white">Upcoming concerts</h3>
           <div id="concerts"></div>
         </div>
       </div>
