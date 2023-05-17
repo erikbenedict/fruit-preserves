@@ -9,6 +9,15 @@ const searchType = document.getElementById("searchType");
 const prevSearches = document.getElementById("previousSearches");
 const clearUserPlaylistButton = document.getElementById('clearUserPlaylist');
 const clearSearchHistoryButton = document.getElementById('clearSrcHistory');
+const ticketmasterDiv = document.getElementById('concerts');
+const searchHistory = document.getElementById('searchHistory');
+const ticketmaster = document.getElementById('ticketmaster');
+const userPlaylist = document.getElementById('userPlaylist');
+const toggle = document.getElementById('toggle');
+const body = document.querySelector('body');
+const header = document.querySelector('.titles');
+const span = document.querySelector('.customSpan');
+const label = document.querySelector('.customLabel');
 let searchHistoryItems = [];
 let userPlaylistItems = [];
 
@@ -32,16 +41,21 @@ function storeSearches() {
   }
 
 function renderSearchHistoryItems() {
+	const uniqueSearchHistoryItems = [...new Set(searchHistoryItems)];
 	prevSearches.innerHTML = "";
-	for (let i = 0; i < searchHistoryItems.length; i++) {
-		let searchHistoryItem = searchHistoryItems[i];
+	for (let i = 0; i < uniqueSearchHistoryItems.length; i++) {
+		let searchHistoryItem = uniqueSearchHistoryItems[i];
 		let searchHistoryLine = document.createElement('div');
 		let searchHistoryBtn = document.createElement('button');
-		searchHistoryBtn.setAttribute('class', 'bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow my-1');
+		searchHistoryBtn.setAttribute('class', 'bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow my-1 w-1/3');
 		searchHistoryBtn.setAttribute('id', 'searchHistoryBtn');
 		searchHistoryBtn.textContent = searchHistoryItem;
 		searchHistoryLine.append(searchHistoryBtn);
-		prevSearches.append(searchHistoryLine);
+		if (prevSearches.firstChild) {
+			prevSearches.insertBefore(searchHistoryLine, prevSearches.firstChild);
+		} else {
+			prevSearches.appendChild(searchHistoryLine);
+		}
 		searchHistoryBtn.addEventListener('click', () => {
 		let textInput = searchHistoryBtn.textContent.split(':')[0].trim();
 		let type = searchHistoryBtn.textContent.split(':')[1].trim();
@@ -50,6 +64,10 @@ function renderSearchHistoryItems() {
 	};
 	if(searchHistoryItems.length === 5){
 		searchHistoryItems.shift();
+	}
+	if(searchHistoryItems.length >= 1){
+		clearSearchHistoryButton.removeAttribute('class', 'hidden');
+		clearSearchHistoryButton.setAttribute('class', 'bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded my-1')
 	}
 }
 
@@ -145,9 +163,6 @@ function returnElementId123(elementId) {
 	const clone = node.cloneNode(true);
 	userPlaylistItems.push({name: `${clone.getAttribute('data-artist')}`, iframe: clone.outerHTML});
 	storeUserPlaylist();
-	if(userPlaylistItems.length >= 5){
-	  userPlaylistItems.shift();
-	}
 	renderUserPlaylistItems();
   }
 
@@ -159,9 +174,6 @@ function renderUserPlaylistItems() {
 	addedSongs.innerHTML = '';
 	let userPlaylistItems = JSON.parse(localStorage.getItem('userPlaylistItems')) || [];
 	userPlaylistItems.forEach((item) => {
-		let thisSong = document.createElement("h2");
-		thisSong.textContent = (addedSongs.childElementCount/3) + 1 + ')';
-		addedSongs.appendChild(thisSong);
 		let clone = document.createElement('div');
 		clone.innerHTML = item.iframe;
 		addedSongs.appendChild(clone.firstChild);
@@ -174,6 +186,13 @@ function renderUserPlaylistItems() {
     getArtistId(artistName);
 	})
 	});
+	if(userPlaylistItems.length >= 5){
+		userPlaylistItems.shift();
+	  }
+	if(userPlaylistItems.length >= 1){
+		clearUserPlaylistButton.removeAttribute('class', 'hidden');
+		clearUserPlaylistButton.setAttribute('class', 'bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded my-1')
+	}
   }
 
 function loadSavedPlaylist() {
@@ -201,8 +220,6 @@ let getArtistId = async function(searchTerm){
         await getConcertData(data._embedded.attractions[i].id);
     }
 };
-
-const ticketmasterDiv = document.getElementById('concerts');
 
 let getConcertData = async function(artistId){
     let concertsEndpoint = 'https://app.ticketmaster.com/discovery/v2/events.json?attractionId=' + artistId + '&apikey=OG2fkxjdAsu6SUo15migEcOBGuAtVBAL';
@@ -232,9 +249,10 @@ let renderConcertData = function(name, date, url){
   const concertVenueLabel = document.createTextNode('');
   const concertVenue = document.createElement('a');
   concertVenue.setAttribute('href', url);
-  const venueLink = document.createTextNode('| Click here for more information');
+  const venueLink = document.createTextNode('Click here for more information');
   concertVenue.appendChild(venueLink);
-  concertVenue.setAttribute('class', 'p-2 text-blue-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white');
+  concertVenue.setAttribute('class', 'p-2 text-cyan-300 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white');
+  concertInfo.setAttribute('class', 'bg-slate-500 rounded-lg shadow-xl min-h-min p-2 m-2 text-justify')
   concertInfo.appendChild(concertName);
   concertInfo.appendChild(concertDateLabel);
   concertInfo.appendChild(concertDate);
@@ -259,23 +277,14 @@ loadSavedSearches();
 loadSavedPlaylist();
 
 // * Light & Dark Mode
-const body = document.querySelector('body');
-const header = document.querySelector('.titles');
-const div = document.querySelector('#hero');
-const redDiv = document.querySelector('#searchHistory');
-const greenDiv = document.querySelector('#ticketmaster');
-const button = document.querySelector('#clearSrcHistory');
-const blueDiv = document.querySelector('#userPlaylist');
-const orangeDiv = document.querySelector('#searchedResults');
-const toggle = document.getElementById('toggle');
 toggle.onclick = function(){
     toggle.classList.toggle('active');
     body.classList.toggle('active');
     header.classList.toggle('active');
-    hero.classList.toggle('active');
+	span.classList.toggle('active');
+	label.classList.toggle('active');
     searchHistory.classList.toggle('active');
     ticketmaster.classList.toggle('active');
-    clearSrcHistory.classList.toggle('active');
     userPlaylist.classList.toggle('active');
     searchedResults.classList.toggle('active');
 }

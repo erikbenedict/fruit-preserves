@@ -1,9 +1,8 @@
 :root {
-    --Light: #f8f8f8;
-    --Dark: #1F2833;
-    --LightCyan: #45A29E;
-    --DarkCyan: #66FCF1;
-    --textContent: #c5c5c5;
+    --light: #f8f8f8;
+    --dark: #1F2833;
+    --darkCyan: #45A29E;
+    --textContent: #b1adad;
 }
 
 * {
@@ -11,43 +10,16 @@
 }
 
 body{
-    min-height: 100vh;
-    background-color: #1F2833;
-    color:#c5c5c5;
+    background-color: var(--dark);
+    color:var(--textContent);
     transition: 0.5s;
 }
 
 body.active{
-    background: #f8f8f8;
+    background: var(--light);
 }
 
-/* * Header * */
-.top-bar h1, .top-bar h2 {
-   margin: 5px; 
-   margin: 10px;
-   font-weight: 900;
-   font-size: 35px;
-}
-
-.top-bar {
-    width: 100%;
-    margin: 10px;
-    padding: 0 20px 10px 20px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.titles, #toggle {
-    width: 50%;
-}
-
-.titles {
-    color: #66FCF1;
-}
-
-.titles.active {
-    color: #45A29E;
-}
+/* * Toggle div * */
 
 #toggle { 
     position: relative;
@@ -65,7 +37,7 @@ body.active{
 }
 
 #toggle.active{
-    background: #fff;
+    background: var(--textContent);
     margin: 10px;
     box-shadow: inset 0 2px 60px rgba(0,0,0,0.1),
                 inset 0 2px 8px rgba(0,0,0,0.1),
@@ -97,68 +69,31 @@ body.active{
                 inset 0 -4px 4px rgba(255,255,255,1);
 }
 
-/* * Body * */
-.hero {
-    background-image: url(./images/jam-jamming\ \(2\).jpg);
-    background-size: cover;
-    background-position: center;
-}
-
-.hero-1 {
-    background-color: rgb(8, 242, 110);
-}
-
-.hero-2 {
-    background-color: rgb(42, 157, 244);
-}
-
-.hero-3 {
-    background-color: rgb(207, 102, 121);
-}
-.hero.active {
-    background-color: #45A29E;
-}
-
-#searchHistory {
-    background-color: #c41416;
-    color: #0B0C10;
+/* * Active Body * */
+#searchHistory, #ticketmaster, #userPlaylist, #searchedResults, .titles, .customLabel, .customSpan {
     transition: 0.5s;
+}
+
+.titles.active, .customSpan.active {
+    color: var(--darkCyan);
 }
 
 #searchHistory.active {
     background-color: #cf6679;
-    color: #def7f6;
 }
 
-#ticketmaster {
-    background-color: #059152;
-    color: #0B0C10;
-    transition: 0.5s;
+.customLabel.active {
+    color: var(--dark);
 }
 
 #ticketmaster.active {
-    background-color: rgb(8, 242, 110);
-    color: #def7f6;
-}
-
-#userPlaylist {
-    background-color: #1167b1;
-    color: #0B0C10;
-    transition: 0.5s;
+    background-color: #08f26e;
 }
 
 #userPlaylist.active {
     background-color: #2a9df4;
-    color: #def7f6;
-}
-
-#searchedResults {
-    background-color: #F58216;
-    color: #0B0C10;
-    transition: 0.5s;
 }
 
 #searchedResults.active {
     background-color: #FFB347;
-    color: #def7f6;
 }
