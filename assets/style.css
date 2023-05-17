@@ -27,6 +27,14 @@ body.active{
     color: #45A29E;
 }
 
+.customSpan {
+    transition: 0.5s;
+}
+
+.customSpan.active {
+    color: #45A29E;
+}
+
 #toggle { 
     position: relative;
     display: block;
@@ -83,6 +91,14 @@ body.active{
 #searchHistory.active {
     background-color: #cf6679;
     color: #def7f6;
+}
+
+.customLabel {
+    transition: 0.5s;
+}
+
+.customLabel.active {
+    color: var(--Dark);
 }
 
 #ticketmaster {

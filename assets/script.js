@@ -272,7 +272,8 @@ loadSavedPlaylist();
 // * Light & Dark Mode
 const body = document.querySelector('body');
 const header = document.querySelector('.titles');
-const div = document.querySelector('#hero');
+const span = document.querySelector('.customSpan');
+const label = document.querySelector('.customLabel');
 const redDiv = document.querySelector('#searchHistory');
 const greenDiv = document.querySelector('#ticketmaster');
 const button = document.querySelector('#clearSrcHistory');
@@ -283,7 +284,8 @@ toggle.onclick = function(){
     toggle.classList.toggle('active');
     body.classList.toggle('active');
     header.classList.toggle('active');
-    hero.classList.toggle('active');
+	span.classList.toggle('active');
+	label.classList.toggle('active');
     searchHistory.classList.toggle('active');
     ticketmaster.classList.toggle('active');
     clearSrcHistory.classList.toggle('active');
