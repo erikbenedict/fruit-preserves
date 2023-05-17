@@ -9,6 +9,15 @@ const searchType = document.getElementById("searchType");
 const prevSearches = document.getElementById("previousSearches");
 const clearUserPlaylistButton = document.getElementById('clearUserPlaylist');
 const clearSearchHistoryButton = document.getElementById('clearSrcHistory');
+const ticketmasterDiv = document.getElementById('concerts');
+const searchHistory = document.getElementById('searchHistory');
+const ticketmaster = document.getElementById('ticketmaster');
+const userPlaylist = document.getElementById('userPlaylist');
+const toggle = document.getElementById('toggle');
+const body = document.querySelector('body');
+const header = document.querySelector('.titles');
+const span = document.querySelector('.customSpan');
+const label = document.querySelector('.customLabel');
 let searchHistoryItems = [];
 let userPlaylistItems = [];
 
@@ -212,8 +221,6 @@ let getArtistId = async function(searchTerm){
     }
 };
 
-const ticketmasterDiv = document.getElementById('concerts');
-
 let getConcertData = async function(artistId){
     let concertsEndpoint = 'https://app.ticketmaster.com/discovery/v2/events.json?attractionId=' + artistId + '&apikey=OG2fkxjdAsu6SUo15migEcOBGuAtVBAL';
     let response2 = await fetch(concertsEndpoint);
@@ -270,16 +277,6 @@ loadSavedSearches();
 loadSavedPlaylist();
 
 // * Light & Dark Mode
-const body = document.querySelector('body');
-const header = document.querySelector('.titles');
-const span = document.querySelector('.customSpan');
-const label = document.querySelector('.customLabel');
-const redDiv = document.querySelector('#searchHistory');
-const greenDiv = document.querySelector('#ticketmaster');
-const button = document.querySelector('#clearSrcHistory');
-const blueDiv = document.querySelector('#userPlaylist');
-const orangeDiv = document.querySelector('#searchedResults');
-const toggle = document.getElementById('toggle');
 toggle.onclick = function(){
     toggle.classList.toggle('active');
     body.classList.toggle('active');
@@ -288,7 +285,6 @@ toggle.onclick = function(){
 	label.classList.toggle('active');
     searchHistory.classList.toggle('active');
     ticketmaster.classList.toggle('active');
-    clearSrcHistory.classList.toggle('active');
     userPlaylist.classList.toggle('active');
     searchedResults.classList.toggle('active');
 }
