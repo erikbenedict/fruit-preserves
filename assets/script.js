@@ -32,16 +32,21 @@ function storeSearches() {
   }
 
 function renderSearchHistoryItems() {
+	const uniqueSearchHistoryItems = [...new Set(searchHistoryItems)];
 	prevSearches.innerHTML = "";
-	for (let i = 0; i < searchHistoryItems.length; i++) {
-		let searchHistoryItem = searchHistoryItems[i];
+	for (let i = 0; i < uniqueSearchHistoryItems.length; i++) {
+		let searchHistoryItem = uniqueSearchHistoryItems[i];
 		let searchHistoryLine = document.createElement('div');
 		let searchHistoryBtn = document.createElement('button');
 		searchHistoryBtn.setAttribute('class', 'bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow my-1 w-1/3');
 		searchHistoryBtn.setAttribute('id', 'searchHistoryBtn');
 		searchHistoryBtn.textContent = searchHistoryItem;
 		searchHistoryLine.append(searchHistoryBtn);
-		prevSearches.append(searchHistoryLine);
+		if (prevSearches.firstChild) {
+			prevSearches.insertBefore(searchHistoryLine, prevSearches.firstChild);
+		} else {
+			prevSearches.appendChild(searchHistoryLine);
+		}
 		searchHistoryBtn.addEventListener('click', () => {
 		let textInput = searchHistoryBtn.textContent.split(':')[0].trim();
 		let type = searchHistoryBtn.textContent.split(':')[1].trim();
@@ -239,7 +244,8 @@ let renderConcertData = function(name, date, url){
   concertVenue.setAttribute('href', url);
   const venueLink = document.createTextNode('Click here for more information');
   concertVenue.appendChild(venueLink);
-  concertVenue.setAttribute('class', 'p-2 text-blue-700 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white');
+  concertVenue.setAttribute('class', 'p-2 text-cyan-300 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white');
+  concertInfo.setAttribute('class', 'bg-slate-500 rounded-lg shadow-xl min-h-min p-2 m-2 text-justify')
   concertInfo.appendChild(concertName);
   concertInfo.appendChild(concertDateLabel);
   concertInfo.appendChild(concertDate);
